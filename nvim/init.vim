@@ -2,6 +2,74 @@
 " These one's are actually default in neovim and vim8
 " set nocompatible
 " filetype plugin indent on
+" set the runtime path to include Vundle and initialize {{{
+set rtp+=~/.config/nvim/pack/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+"Plugin 'tpope/vim-scriptease'
+"Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-dispatch'
+"Plugin 'https://tpope.io/vim/repeat.git'              " Needed by vim-sneak
+"Plugin 'https://github.com/easymotion/vim-easymotion.git'
+
+Plugin 'vim-scripts/vimagit'
+Plugin 'gregsexton/gitv'
+Plugin 'airblade/vim-gitgutter'
+
+" Utilities
+"Plugin 'w0rp/ale'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'lyuts/vim-rtags'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'mhinz/vim-startify'
+"Plugin 'https://github.com/sheerun/vim-polyglot.git' " Language packs for many languages.
+Plugin 'https://github.com/tybenz/vimdeck.git'
+Plugin 'https://github.com/vim-scripts/SyntaxRange.git' " Needed for vimdeck...
+
+" Themes to download
+"Plugin 'marcopaganini/termschool-vim-theme'
+"Plugin 'dracula/vim.git'
+"if has('nvim')
+"    Plugin 'Soares/base16.nvim'
+"    Plugin 'https://github.com/freeo/vim-kalisi.git'
+"endif
+
+" Development plugins
+Plugin 'rhysd/vim-clang-format.git'
+Plugin 'mileszs/ack.vim'
+"Plugin 'https://github.com/arakashic/chromatica.nvim.git'
+Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
+Plugin 'https://github.com/vim-syntastic/syntastic.git'
+Plugin 'https://github.com/rust-lang/rust.vim.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" }}}
+
 " Enable syntax and plugins (for netrw) {{{
 syntax enable                           " Enable syntax highlight
 filetype plugin on                      " Filetype detection, plugin [ON]
@@ -33,9 +101,10 @@ set ignorecase                           " Make searches case-insensitive.
 set smartcase                            " Unless search uses capitals.
 set ruler                                " Always show info along bottom.
 set autoindent                           " auto-indent
-set tabstop=3                            " tab spacing
-set softtabstop=3                        " unify
-set shiftwidth=3                         " indent/outdent by 3 columns
+set autowrite                            " write buffer (when doing make ..
+set tabstop=4                            " tab spacing
+set softtabstop=4                        " unify
+set shiftwidth=4                         " indent/outdent by n columns
 set shiftround                           " always indent/outdent to the nearest tabstop
 set expandtab                            " use spaces instead of tabs
 set smartindent
@@ -43,7 +112,7 @@ set backspace=indent,eol,start           " make backspace work like you'd expect
 set clipboard=unnamed                    " use system clipboard as default clipboard
 set scrolloff=5                          " number of lines to keep above and below the cursor
 set nowrap                               " don't wrap text
-set autowriteall                         " write all files when hiding buffers
+set autowriteall                         " write all files when hiding buffers. NOTE: causes uncoditional writes
 set guioptions-=m                        " remove menu bar
 set guioptions-=T                        " remove toolbar
 set guioptions-=r                        " remove right-hand scroll bar
@@ -57,11 +126,12 @@ if (has('mac') && has("termguicolors"))  " enable 24 bit color support if suppor
 endif
 " }}}
 
-" F9 to toggle paste mode {{{
-:nnoremap <silent><F9> :set paste!<CR>
-
+" Set up Buffer auto command {{{
 " don't automatically comment next line on enter/o if already commenting
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
+" Change to directory of current file automatically
+"autocmd BufEnter * lcd %:p:h " change to directory of current file automatically
 
 " automatically strip trailing whitespace
 fun! <SID>StripTrailingWhitespaces()
@@ -73,16 +143,37 @@ endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " }}}
 
+" Cursorline {{{
+" Only show cursorline in the current window and in normal mode.
+
+augroup cline
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
+
+" }}}
+
 " Execute the local working directory's .vimrc {{{
 set exrc                                 " forces Vim to source .vimrc file if it present in working directory, thus providing a place to store project-specific configuration.
 set secure                               " restrict usage of some commands in non-default .vimrc files; commands that write to file or execute shell commands are not allowed and map commands are displayed
 " }}}
 
 " Leader setup {{{
-nnoremap <Leader>mm : make<CR>
+"nnoremap <Leader>mm : Make<CR>  " NOTE: when using 'M'ake it maps to tpope's dispatch
+nnoremap <Leader>mm : Dispatch<CR>  " NOTE: when using '!' to run in the background.
 nnoremap <Leader>fs : w<CR>
 " print the unicode character (on the next line)
 nnoremap <Leader>u mz"zylo<C-r>=printf('U+%04X', char2nr(@z))<CR><ESC>`z
+" Simple file browser using netrw
+nnoremap <leader>e :e %:h/<CR>
+nnoremap <leader>v :vsp %:h/<CR>
+nnoremap <leader>s :sp %:h/<CR>
+" Swap between c/cpp and h file.
+nnoremap <Leader>oc :e %<.cpp<CR>
+nnoremap <Leader>oh :e %<.h<CR>
+nnoremap <Leader>oC :e %<.c<CR>
+nnoremap <Leader>oH :e %<.hpp<CR>
 " NOW WE CAN:
 " - Take over the world
 " Set up the build system
@@ -109,7 +200,7 @@ nnoremap - ddp
 " Move a line upwards
 nnoremap _ kddpk
 " Uppercase word from insert mode
-inoremap <c-u> <esc>viwUea
+inoremap <C-u> <esc>viwUea
 " Uppercase word from normal mode
 nnoremap <c-u> viwUel
 " Remap the ; key to the : to simplify use of commands, and wise versa.
@@ -119,8 +210,11 @@ nnoremap ; :
 nnoremap <leader>bb :Buffers<CR>
 " Mappings for NerdTree.
 nnoremap <leader><tab> :NERDTreeToggle<cr>
-"As an alternative to :echo getline(search('\v^[[:alpha:]$_]', "bn", 1, 100))<CR>
-nnoremap <C-g> :Lost<CR>
+" Remap the C-g which normally shows info about the file to show info about
+" the current method.
+nnoremap <C-g> :echo getline(search('\v^[[:alpha:]$_]', "bn", 1, 100))<CR>
+"As an alternative to
+"nnoremap <C-g> :Lost<CR>
 " ==================  make sarches always appear in centre of page
 :nnoremap n nzz
 :nnoremap N Nzz
@@ -130,6 +224,11 @@ nnoremap <C-g> :Lost<CR>
 :nnoremap g# g#zz
 " clear search highlighting with enter
 nnoremap <cr> :noh<CR><CR>:<backspace>
+:nnoremap <silent><F8> :Dispatch<CR>
+:nnoremap <silent><F9> :set paste!<CR>
+" From Steve Losh youtube walkthrough : Close all other folds but the one I am
+" on at the moment.
+nnoremap <leader>z zMzvzz
 " }}}
 
 " Insert mode mappings {{{
@@ -137,14 +236,34 @@ nnoremap <cr> :noh<CR><CR>:<backspace>
 inoremap jk <esc>
 " Disable the <esc> key in insert mode for now ..."
 "inoremap <esc> <nop>
+"DIY autoclosing
+inoremap (; ();<left><left>
+inoremap [; [];<left><left>
+"inoremap ( ()<left>
+inoremap [ []<left>
+inoremap {<cr> {<cr>}<esc>O
+inoremap (<cr> (<cr>)<esc>O
+inoremap [<cr> [<cr>]<esc>O
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+inoremap ``` ```<cr>```<esc>O
+" jump over the doubled up chars above you can use Ctrl-l
+inoremap <c-l> <right>
 " }}}
 
 " Theme setup {{{
-"colo dracula
-"colo kalisi
-colo termschool
+try
+   "colorscheme dracula
+   "colorscheme kalisi
+   "colorscheme termschool
+   colorscheme default              " Sometimes you want just plain vanilla....
+catch /^Vim\%((\a\+)\)\=:E185/
+    " no plugins available
+    colorscheme default
+endtry
 set background=dark
-hi ColorColumn ctermbg=darkgrey guibg=lightgrey
+hi ColorColumn ctermbg=darkgrey guibg=orange
 " fix background color behaviour
 hi Normal ctermbg=NONE
 
@@ -259,6 +378,20 @@ let g:ale_completion_enabled = 1
 "let g:airline#extensions#tagbar#flags = 'f' " Show function names
 " }}}
 
+" Linter setup (syntastic) {{{
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "☠"
+"let g:syntastic_error_symbol = "\u2717"
+"let g:syntastic_warning_symbol = "\u26A0"
+let g:syntastic_cpp_checkers = ["clang_check"]
+let g:syntastic_clang_check_config_file = ".clang_complete"
+let g:syntastic_debug = 0
+let g:syntastic_debug_file = "~/syntastic.log"
+" }}}
+
 "Folding of code {{{
 " Now we can fold code by
 " 1: mark the beginning of a scope with mb
@@ -267,6 +400,8 @@ let g:ale_completion_enabled = 1
 " The folded code should be persistent.
 autocmd BufWinLeave *.* mkview " restor the foldinging view of files.
 autocmd BufWinEnter *.* silent loadview
+:highlight Folded guibg=grey guifg=black
+:highlight FoldColumn guibg=darkgrey guifg=white
 " }}}
 
 " Automatic generation of help files {{{
@@ -402,14 +537,15 @@ set laststatus=2
 
 " Function: display errors from Ale in statusline
 function! LinterStatus() abort
-   let l:counts = ale#statusline#Count(bufnr(''))
-   let l:all_errors = l:counts.error + l:counts.style_error
-   let l:all_non_errors = l:counts.total - l:all_errors
-   return l:counts.total == 0 ? '' : printf(
-   \ 'W:%d E:%d',
-   \ l:all_non_errors,
-   \ l:all_errors
-   \)
+   return ''
+   "let l:counts = ale#statusline#Count(bufnr(''))
+   "let l:all_errors = l:counts.error + l:counts.style_error
+   "let l:all_non_errors = l:counts.total - l:all_errors
+   "return l:counts.total == 0 ? '' : printf(
+   "\ 'W:%d E:%d',
+   "\ l:all_non_errors,
+   "\ l:all_errors
+   "\)
 endfunction
 
 " Function: return the time of some file
@@ -466,8 +602,8 @@ function! ActiveStatus()
   let statusline.=""
   let statusline.="%4*"
   let statusline.="\ %<"
-  "let statusline.="%f"                   " Specify path and file.
-  let statusline.="%t"                    " Specify only filename.
+  let statusline.="%f"                   " Specify path and file.
+  "let statusline.="%t"                    " Specify only filename.
   let statusline.="%{&modified?'\ \ ☠\ ':MySavedTime()}"
   let statusline.="%{&readonly?'\ \ ':''}"
   let statusline.="\ "
@@ -593,5 +729,141 @@ function! OpenCurrentFileBackupHistory()
   let cmd .= 'send-keys "git log --patch --since=\"1 month ago\" ' . expand('%:t') . '" C-m'
   call system(cmd)
 endfunction
+
+" }}}
+
+"{{{ Abbreviations
+" Get the time {{{
+function! MyGetTime()
+    let s = strftime("%Y %b %d")
+    return s
+endfunc
+" }}}
+
+" To consume the space typed after an abbreviation: >
+function! Eatchar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+endfunc
+
+" Return file name
+function! MyFileName()
+    let d = expand('%:t')
+    return d
+endfunc
+
+" Return a commment line {{{
+let g:commentstars = '******************************************************************************'
+let g:commentcc = '// ---'
+function! MyStartCC()
+    let c = g:commentcc
+    return c
+endfunc
+
+function! MyStartC()
+    let c = '/'.g:commentstars
+    return c
+endfunc
+
+function! MyEndC()
+    let c = g:commentstars.'/'
+    return c
+endfunc
+" }}}
+
+"Take a look at the insert mode remappings instead for this one.
+"iabbrev <silent> { <C-R>=Eatchar('\s')<CR>{<CR><CR>}<Up>
+iabbrev <silent> note NOTE:
+iabbrev <silent> todo TODO: (Willy Clarke)
+iabbrev <silent> fixme FIXME: (Willy Clarke)
+iabbrev <silent> bugf BUGFIX:
+iabbrev <silent> enha ENHANCEMENT:
+iabbrev <silent> w@ willy@clarke.no
+iabbrev <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>
+iabbrev <silent> while while ()<Left><C-R>=Eatchar('\s')<CR>
+iabbrev <silent> fidx for (size_t Idx = 0; //<!<CR>Idx <; //<!<CR> ++Idx)<CR>{<CR><Up><Up><Up><Esc>f;i
+iabbrev <silent> faut for (auto E : )<CR>{<CR><Up><Up><Esc>f:a
+
+iabbrev <silent> loginfo LOGINFO("{} -> {}", __FUNCTION__, "A text");
+iabbrev <silent> logerr LOGERROR("{} -> {}", __FUNCTION__, "A text");
+iabbrev <silent> sendl std::endl
+iabbrev <silent> ;; << std::endl;<CR>
+iabbrev <silent> scout std::cout <<
+iabbrev <silent> scerr std::cerr <<
+"    " For myheader : Go to column 0, then enter insert mode, then enter the rest
+"    " of the stuff.
+"autocmd FileType c, cpp, objc :iabbrev <silent> myheader <Esc>0i<C-R>=MyStartC()<CR><CR>* Filename : <C-R>=MyFileName()<CR><CR>* Date     : <C-R>=MyGetTime()<CR><CR>* Author   : Willy Clarke (willy@clarke.no)<CR>* Version  : 0.0.1<CR>* Copyright: W. Clarke<CR>* License  : MIT<CR>* Descripti:<CR><C-R>=MyEndC()<CR><Left><C-R>=Eatchar('\s')<CR><Up><Up><Esc>$a
+iabbrev <silent> myheader <Esc>0i<C-R>=MyStartC()<CR><CR>* Filename : <C-R>=MyFileName()<CR><CR>* Date     : <C-R>=MyGetTime()<CR><CR>* Author   : Willy Clarke (willy@clarke.no)<CR>* Version  : 0.0.1<CR>* Copyright: W. Clarke<CR>* License  : MIT<CR>* Descripti:<CR><C-R>=MyEndC()<CR><Left><C-R>=Eatchar('\s')<CR><Up><Up><Esc>$a
+iabbrev <silent> mycom <C-R>=MyStartC()<CR><CR><left>* NOTE: <CR><left><C-R>=MyEndC()<CR><Up><Esc>$i
+iabbrev <silent> myccom <C-R>=MyStartCC()<CR><CR><left> NOTE: <CR><left> ---<Up><Esc>$i
+"    " Progamming an project related abbreviations. Consider moving these to a
+"    " project .nvimrc
+iabbrev <silent> ecpnon ECPRINTNONE <<
+iabbrev <silent> ecperr ECPRINTERROR <<
+iabbrev <silent> ecpcur ECPRINTNONE << EcCurrentFunction << " -> "  << __FILE__ << ":" << __LINE__ << std::endl;<Esc>0f>a
+
+"}}}
+
+" Highlight Word {{{
+" NOTE:
+" This code has been pasted from
+" https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc?fileviewer=file-view-default
+"
+" This mini-plugin provides a few mappings for highlighting words temporarily.
+"
+" Sometimes you're looking at a hairy piece of code and would like a certain
+" word or two to stand out temporarily.  You can search for it, but that only
+" gives you one color of highlighting.  Now you can use <leader>N where N is
+" a number from 1-6 to highlight the current word in a specific color.
+
+function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+
+function! HiInterestingWordClear() " {{{
+    silent! call clearmatches()
+endfunction    "}}}
+
+" Mappings {{{
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+nnoremap <silent> <leader>0 :call HiInterestingWordClear()<cr>
+
+" }}}
+
+" Default Highlights {{{
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" }}}
 
 " }}}
