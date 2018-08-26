@@ -867,3 +867,8 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " }}}
 
 " }}}
+
+" Runtime path {{{
+" If installed using git
+set runtimepath+=~/.fzf
+"}}}
