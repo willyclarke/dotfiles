@@ -795,7 +795,7 @@ iabbrev <silent> scerr std::cerr <<
 "autocmd FileType c, cpp, objc :iabbrev <silent> myheader <Esc>0i<C-R>=MyStartC()<CR><CR>* Filename : <C-R>=MyFileName()<CR><CR>* Date     : <C-R>=MyGetTime()<CR><CR>* Author   : Willy Clarke (willy@clarke.no)<CR>* Version  : 0.0.1<CR>* Copyright: W. Clarke<CR>* License  : MIT<CR>* Descripti:<CR><C-R>=MyEndC()<CR><Left><C-R>=Eatchar('\s')<CR><Up><Up><Esc>$a
 iabbrev <silent> myheader <Esc>0i<C-R>=MyStartC()<CR><CR>* Filename : <C-R>=MyFileName()<CR><CR>* Date     : <C-R>=MyGetTime()<CR><CR>* Author   : Willy Clarke (willy@clarke.no)<CR>* Version  : 0.0.1<CR>* Copyright: W. Clarke<CR>* License  : MIT<CR>* Descripti:<CR><C-R>=MyEndC()<CR><Left><C-R>=Eatchar('\s')<CR><Up><Up><Esc>$a
 iabbrev <silent> mycom <C-R>=MyStartC()<CR><CR><left>* NOTE: <CR><left><C-R>=MyEndC()<CR><Up><Esc>$i
-iabbrev <silent> myccom <C-R>=MyStartCC()<CR><CR><left> NOTE: <CR><left> ---<Up><Esc>$i
+iabbrev <silent> myccom <C-R>=MyStartCC()<CR><CR><left>// NOTE: <CR><left><C-R>=MyStartCC()<CR><Up><Esc>$i
 "    " Progamming an project related abbreviations. Consider moving these to a
 "    " project .nvimrc
 iabbrev <silent> ecpnon ECPRINTNONE <<
