@@ -1,0 +1,92 @@
+## tmux issues
+
+=== Getting _italics_ to work
+
+To get tmux to display italics for use in vim etc. the terminfo database need to be updated.
+
+I basically followed the procedure here:
+
+https://apple.stackexchange.com/questions/249307/tic-doesnt-read-from-stdin-and-segfaults-when-adding-terminfo-to-support-italic#249385
+
+Thanks to https://apple.stackexchange.com/users/160579/ianedington[Ian Edington] for sharing.
+
+==== Procedure:
+
+[start=1]
+. Create two files:
+
+File `xterm-256color-italic.terminfo`:
+
+[source,bash]
+----
+# A xterm-256color based TERMINFO that adds the escape sequences for italic.
+xterm-256color-italic|xterm with 256 colors and italic,
+  sitm=\E[3m, ritm=\E[23m,
+  use=xterm-256color,
+----
+
+File `tmux-256color-italic.terminfo`:
+
+[source,bash]
+----
+# A xterm-256color based TERMINFO that adds the escape sequences for italic.
+tmux-256color-italic|tmux with 256 colors and italic,
+  sitm=\E[3m, ritm=\E[23m,
+  use=xterm-256color,
+----
+
+[start=2]
+. tic them both
+
+[source,bash]
+----
+tic xterm-256color-italic.terminfo
+tic tmux-256color-italic.terminfo
+----
+
+[start=3]
+. Tell your terminal to use xterm and tmux to use tmux with overrides.
+
+Figure out how to set your terminals $TERM variable to xterm-256color-italic.
+In iTerm it's in Prefs -> profiles -> Terminal -> Report Terminal Type.
+
+In your `.tmux.conf` file:
+
+[source,bash]
+----
+# tmux display in 256 colours
+set -g default-terminal "tmux-256color-italic"
+#  enable terminal compatibility with outside terminal
+set-option -ga terminal-overrides ",xterm-256color-italic:Tc"
+----
+
+[start=4]
+. Test for italics and colour
+
+[source,bash]
+----
+# Test Italics
+echo `tput sitm`italics`tput ritm`
+# Test Colour (should be smooth gradient)
+awk 'BEGIN{
+    s="/\\/\\/\\/\\/\\"; s=s s s s s s s s s s s s s s s s s s s s s s s;
+    for (colnum = 0; colnum<256; colnum++) {
+        r = 255-(colnum*255/255);
+        g = (colnum*510/255);
+        b = (colnum*255/255);
+        if (g>255) g = 510-g;
+        printf "\033[48;2;%d;%d;%dm", r,g,b;
+        printf "\033[38;2;%d;%d;%dm", 255-r,255-g,255-b;
+        printf "%s\033[0m", substr(s,colnum+1,1);
+    }
+    printf "\n";
+}'
+----
+
+https://apple.stackexchange.com/users/160579/ianedington[Ian Edington] says:
+
+"If I understand correctly tmux depends on an external terminal environment in order to render
+text correctly. This means it needs to translate/override certain commands."
+
+source: https://github.com/tmux/tmux/issues/696
+
