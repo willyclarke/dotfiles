@@ -41,6 +41,7 @@ Plugin 'https://github.com/vim-scripts/SyntaxRange.git' " Needed for vimdeck...
 " Themes to download
 "Plugin 'marcopaganini/termschool-vim-theme'
 "Plugin 'dracula/vim.git'
+Plugin 'https://github.com/haishanh/night-owl.vim.git'
 "if has('nvim')
 "    Plugin 'Soares/base16.nvim'
 "    Plugin 'https://github.com/freeo/vim-kalisi.git'
@@ -119,6 +120,7 @@ set guioptions-=r                        " remove right-hand scroll bar
 set guioptions-=L                        " remove left-hand scroll bar
 set updatetime=250                       " set the update time inside vim to be xms
 set showbreak=↪
+set showmode                             " show the mode on the last line
 set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮ " toggle invisible characters
 set list                                 " after the bread crumble; set the list
 if (has('mac') && has("termguicolors"))  " enable 24 bit color support if supported
@@ -229,6 +231,7 @@ nnoremap <cr> :noh<CR><CR>:<backspace>
 " From Steve Losh youtube walkthrough : Close all other folds but the one I am
 " on at the moment.
 nnoremap <leader>z zMzvzz
+nnoremap <tab> %
 " }}}
 
 " Insert mode mappings {{{
@@ -252,12 +255,17 @@ inoremap ``` ```<cr>```<esc>O
 inoremap <c-l> <right>
 " }}}
 
+" Visual mode mappings {{{
+vnoremap <tab> %
+" }}}
+
 " Theme setup {{{
 try
    "colorscheme dracula
    "colorscheme kalisi
    "colorscheme termschool
-   colorscheme default              " Sometimes you want just plain vanilla....
+   "colorscheme default              " Sometimes you want just plain vanilla....
+   colorscheme night-owl
 catch /^Vim\%((\a\+)\)\=:E185/
     " no plugins available
     colorscheme default
@@ -275,22 +283,6 @@ set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-if has("gui_running")
-  if has("gui_gtk2") || has("gui_gtk3")
-    set guifont=Source\ Code\ Pro\ 16                        " Tested on xfe ubuntu 14.04"
-  elseif has("gui_macvim")
-    set guifont=Source\ Code\ Pro:h13                        " Tested on macvim
-  elseif has("gui_photon")
-    set guifont=Source\ Code\ Pro:h33
-  elseif has("gui_kde")
-    set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0            " Not tested."
-  elseif has("x11")
-    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-* " Not tested "
-  else
-    set guifont=Courier_New:h11:cDEFAULT                     " Not tested "
-  endif
-endif
 " }}}
 
 " Highlight ColorColumn ----------------- {{{
@@ -448,9 +440,9 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_experimental_template_highlight = 1
+let g:cpp_experimental_template_highlight = 0
 let g:cpp_concepts_highlight = 1
-let g:cpp_no_function_highlight = 1
+let g:cpp_no_function_highlight = 0
 " }}}
 
 " Set up of mu-complete {{{
@@ -754,7 +746,7 @@ endfunc
 
 " Return a commment line {{{
 let g:commentstars = '******************************************************************************'
-let g:commentcc = '// ---'
+let g:commentcc = '/// ---'
 function! MyStartCC()
     let c = g:commentcc
     return c
@@ -781,7 +773,7 @@ iabbrev <silent> enha ENHANCEMENT:
 iabbrev <silent> w@ willy@clarke.no
 iabbrev <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>
 iabbrev <silent> while while ()<Left><C-R>=Eatchar('\s')<CR>
-iabbrev <silent> fidx for (size_t Idx = 0; //<!<CR>Idx <; //<!<CR> ++Idx)<CR>{<CR><Up><Up><Up><Esc>f;i
+iabbrev <silent> fidx for (size_t Idx = 0; ///<!<CR>Idx <; ///<!<CR> ++Idx)<CR>{<CR><Up><Up><Up><Esc>f;i
 iabbrev <silent> faut for (auto E : )<CR>{<CR><Up><Up><Esc>f:a
 
 iabbrev <silent> loginfo LOGINFO("{} -> {}", __FUNCTION__, "A text");
@@ -795,7 +787,7 @@ iabbrev <silent> scerr std::cerr <<
 "autocmd FileType c, cpp, objc :iabbrev <silent> myheader <Esc>0i<C-R>=MyStartC()<CR><CR>* Filename : <C-R>=MyFileName()<CR><CR>* Date     : <C-R>=MyGetTime()<CR><CR>* Author   : Willy Clarke (willy@clarke.no)<CR>* Version  : 0.0.1<CR>* Copyright: W. Clarke<CR>* License  : MIT<CR>* Descripti:<CR><C-R>=MyEndC()<CR><Left><C-R>=Eatchar('\s')<CR><Up><Up><Esc>$a
 iabbrev <silent> myheader <Esc>0i<C-R>=MyStartC()<CR><CR>* Filename : <C-R>=MyFileName()<CR><CR>* Date     : <C-R>=MyGetTime()<CR><CR>* Author   : Willy Clarke (willy@clarke.no)<CR>* Version  : 0.0.1<CR>* Copyright: W. Clarke<CR>* License  : MIT<CR>* Descripti:<CR><C-R>=MyEndC()<CR><Left><C-R>=Eatchar('\s')<CR><Up><Up><Esc>$a
 iabbrev <silent> mycom <C-R>=MyStartC()<CR><CR><left>* NOTE: <CR><left><C-R>=MyEndC()<CR><Up><Esc>$i
-iabbrev <silent> myccom <C-R>=MyStartCC()<CR><CR><left>// NOTE: <CR><left><C-R>=MyStartCC()<CR><Up><Esc>$i
+iabbrev <silent> myccom <C-R>=MyStartCC()<CR><CR>// NOTE: <CR><C-R>=MyStartCC()<CR><Up><Esc>$i
 "    " Progamming an project related abbreviations. Consider moving these to a
 "    " project .nvimrc
 iabbrev <silent> ecpnon ECPRINTNONE <<
@@ -872,3 +864,29 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " If installed using git
 set runtimepath+=~/.fzf
 "}}}
+
+" Load CtrlP much faster {{{
+"
+" Most of the time we can skip a few places like: generated files,
+" Vim swap files, vendor directories and so on.
+" But… if you are using git — and please say you are — 
+" then I bet you already have this list inside .gitignore!
+" So here is the secret: Make CtrlP load 100x faster by making it skip files
+" inside .gitignore
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" }}}
+
+" Set up italics to my liking {{{
+"
+" Note that these settings need to be below any colorscheme definition.
+" Italics does require a font that supports it.
+" One suggested font is Input Mono. Another one is Fira Code iScript
+" https://github.com/kencrocken/FiraCodeiScript.git
+highlight Comment gui=italic
+highlight Comment cterm=italic
+highlight htmlArg gui=italic
+highlight htmlArg cterm=italic
+highlight Function gui=italic
+highlight Function cterm=italic
+"}}}
+
