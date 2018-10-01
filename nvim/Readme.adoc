@@ -4,10 +4,15 @@
 The init.vim relies on vundle. So prior to starting nvim you should do the following:
 
 $ mkdir -p ~/.config/nvim/pack/bundle
+
 $ mkdir ~/Development
+
 $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/pack/bundle/Vundle.vim
+
 $ git clone https://github.com/willyclarke/dotfiles.git ~/Development/dotfiles
+
 $ ln -s ~/Development/dotfiles/nvim/init.vim ~/.config/nvim
 
-==
+== Update plugins
+
 * start nvim and do a :PluginUpdate
