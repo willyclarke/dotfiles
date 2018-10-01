@@ -1,7 +1,13 @@
-= Installing 
+= Installing
 
+== Get vundle
 The init.vim relies on vundle. So prior to starting nvim you should do the following:
 
-1. mkdir -p ~/.config/nvim/pack/bundle
-2. git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/pack/bundle/Vundle.vim
-3. start nvim and do a :PluginUpdate
+$ mkdir -p ~/.config/nvim/pack/bundle
+$ mkdir ~/Development
+$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/pack/bundle/Vundle.vim
+$ git clone https://github.com/willyclarke/dotfiles.git ~/Development/dotfiles
+$ ln -s ~/Development/dotfiles/nvim/init.vim ~/.config/nvim
+
+==
+* start nvim and do a :PluginUpdate
