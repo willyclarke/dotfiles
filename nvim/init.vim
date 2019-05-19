@@ -77,7 +77,7 @@ set completeopt=noinsert,menuone,noselect
 " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 Plugin 'https://github.com/ncm2/ncm2-path.git'
 Plugin 'https://github.com/ncm2/ncm2-tmux.git'
-Plugin 'https://github.com/ncm2/ncm2-pyclang.git'
+"Plugin 'https://github.com/ncm2/ncm2-pyclang.git'
 "}}}
 "
 " All of your Plugins must be added before the following line
@@ -229,8 +229,10 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 " Move a line downwards
 nnoremap - ddp
+nnoremap <C-j> :m .+1<CR>==
 " Move a line upwards
 nnoremap _ kddpk
+nnoremap <C-k> :m .-2<CR>==
 " Uppercase word from insert mode
 inoremap <C-u> <esc>viwUea
 " Uppercase word from normal mode
@@ -302,12 +304,32 @@ inoremap ` ``<left>
 inoremap ``` ```<cr>```<esc>O
 " jump over the doubled up chars above you can use Ctrl-l
 inoremap <c-l> <right>
+" Move a line downwards
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+" Move a line upwards
+inoremap <C-k> <Esc>:m .-2<CR>==gi
 " }}}
 
 " Visual mode mappings {{{
 vnoremap <tab> %
+" Move a line downwards
+vnoremap <C-j> :m '>+1<CR>==gv
+" Move a line upwards
+vnoremap <C-k> :m '<-2<CR>==gv
 " }}}
 
+" Command mode mappings {{{
+"----
+" Handle E45: 'readonly' option is set (add ! to override)
+"----
+"It usually goes like this: you open a file with Vim and make some changes.
+" When you try to save the file and see the message above.
+" Then you realize that you didn’t run Vim with sudo?! Argh, so annoying isn't it?
+"Now, when you get to the same situation and you can't save your file with usual command,
+" simply run :w!! command, and your changes will be saved!0
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+"xxxx
+" }}}
 
 " Highlight ColorColumn ----------------- {{{
 set colorcolumn=101                      " highligth when going over N columns.
@@ -661,7 +683,7 @@ function! ActiveStatus()
   let statusline.=""
   let statusline.="%4*"
   let statusline.="\ %<"
-  let statusline.="%f"                   " Specify path and file.
+  let statusline.="%F"                   " Specify path and file.
   "let statusline.="%t"                    " Specify only filename.
   let statusline.="%{&modified?'\ \ ☠\ ':MySavedTime()}"
   let statusline.="%{&readonly?'\ \ ':''}"
@@ -687,7 +709,7 @@ function! InactiveStatus()
   let statusline.="%(%{'help'!=&filetype?'\ \ '.bufnr('%').'\ \ ':'\ '}%)"
   let statusline.="%{fugitive#head()!=''?'\ \ '.fugitive#head().'\ ':'\ '}"
   let statusline.="\ %<"
-  let statusline.="%f"                   " Specify path and file.
+  let statusline.="%F"                   " Specify path and file.
   "let statusline.="%t"                    " Specify only filename.
   let statusline.="%{&modified?'\ \ ☠\ ':''}"
   let statusline.="%{&readonly?'\ \ ':''}"
@@ -1000,7 +1022,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
 endtry
 "set background=dark
-hi ColorColumn ctermbg=darkgrey guibg=orange
+hi ColorColumn ctermbg=darkgrey guibg=black
 " fix background color behaviour
 hi Normal ctermbg=NONE
 
