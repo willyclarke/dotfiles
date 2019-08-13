@@ -13,6 +13,10 @@ $ git clone https://github.com/willyclarke/dotfiles.git ~/Development/dotfiles
 
 $ ln -s ~/Development/dotfiles/nvim/init.vim ~/.config/nvim
 
+=== Specify language server json file
+
+Create a link in \~/.config/nvim to the language server json file that you want to use.
+
 == Update plugins
 
 * start nvim and do a :PluginUpdate
