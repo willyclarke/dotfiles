@@ -27,9 +27,7 @@ Plugin 'gregsexton/gitv'
 Plugin 'airblade/vim-gitgutter'
 
 " Utilities
-"Plugin 'w0rp/ale'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'lyuts/vim-rtags'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -66,27 +64,11 @@ Plugin 'mileszs/ack.vim'
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 Plugin 'https://github.com/rust-lang/rust.vim.git'
 Plugin 'https://github.com/vim-syntastic/syntastic.git'
-" neocomplete 2 {{{
-"Plugin 'https://github.com/ncm2/ncm2.git'
-"Plugin 'https://github.com/roxma/nvim-yarp.git'
-" enable ncm2 for all buffers
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-"" IMPORTANTE: :help Ncm2PopupOpen for more information
-"set completeopt=noinsert,menuone,noselect
-"" NOTE: you need to install completion sources to get completions. Check
-"" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-"Plugin 'https://github.com/ncm2/ncm2-path.git'
-"Plugin 'https://github.com/ncm2/ncm2-tmux.git'
-""Plugin 'https://github.com/ncm2/ncm2-pyclang.git'
-""}}}
 
-" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode {{{
-" Install nightly build, replace ./install.sh with install.cmd on windows
-"Plugin 'neoclide/coc.nvim', {'do': './install.sh nightly'}
-" Or install latest release tag
-"Plugin 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-" Or build from source code
-Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 "}}}
 
 " Notes {{{
@@ -1115,6 +1097,9 @@ nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
 nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
 nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+nnoremap <silent> <leader>7 :call HiInterestingWord(7)<cr>
+nnoremap <silent> <leader>8 :call HiInterestingWord(8)<cr>
+nnoremap <silent> <leader>9 :call HiInterestingWord(9)<cr>
 nnoremap <silent> <leader>0 :call HiInterestingWordClear()<cr>
 
 " }}}
@@ -1127,159 +1112,69 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+hi def InterestingWord7 guifg=#000000 ctermfg=16 guibg=#00f0ff ctermbg=195
+hi def InterestingWord8 guifg=#000000 ctermfg=16 guibg=#fffc4b ctermbg=195
+hi def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#ff00ff ctermbg=195
 
 " }}}
 
 " }}}
 
-" Language server setup ccls {{{
-" https://github.com/MaskRay/ccls/wiki/coc.nvim
-"nmap <silent> <M-j> <Plug>(coc-definition)
-"nmap <silent> <C-,> <Plug>(coc-references)
-"nn <silent> K :call CocActionAsync('doHover')<cr>
-"" textDocument/documentHighlight
-"set updatetime=300
-"au CursorHold * sil call CocActionAsync('highlight')
-"au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
-" $ccls/navigate
-" Semantic navigation. Roughly,
-
-" "D" => first child declaration
-" "L" => previous declaration
-" "R" => next declaration
-" "U" => parent declaration
-"nn <silent><buffer> <C-l> :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<cr>
-"nn <silent><buffer> <C-k> :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<cr>
-"nn <silent><buffer> <C-j> :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<cr>
-"nn <silent><buffer> <C-h> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
-
-" Cross reference extensions
-" bases
-"nn <silent> xb :call CocLocations('ccls','$ccls/inheritance')<cr>
-"" bases of up to 3 levels
-"nn <silent> xb :call CocLocations('ccls','$ccls/inheritance',{'levels':3})<cr>
-"" derived
-"nn <silent> xd :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true})<cr>
-"" derived of up to 3 levels
-"nn <silent> xD :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true,'levels':3})<cr>
-
-"" caller
-"nn <silent> xc :call CocLocations('ccls','$ccls/call')<cr>
-"" callee
-"nn <silent> xC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
-
-"" $ccls/member
-"" member variables / variables in a namespace
-"nn <silent> xm :call CocLocations('ccls','$ccls/member')<cr>
-"" member functions / functions in a namespace
-"nn <silent> xf :call CocLocations('ccls','$ccls/member',{'kind':3})<cr>
-"" nested classes / types in a namespace
-"nn <silent> xs :call CocLocations('ccls','$ccls/member',{'kind':2})<cr>
-
-"nmap <silent> xt <Plug>(coc-type-definition)<cr>
-"nn <silent> xv :call CocLocations('ccls','$ccls/vars')<cr>
-"nn <silent> xV :call CocLocations('ccls','$ccls/vars',{'kind':1})<cr>
-
-"nn xx x
- " }}}
-
-" Language server setup cquery - https://github.com/neoclide/coc.nvim - Example vim configuration{{{
+" Language server setup {{{
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
+let g:asyncomplete_auto_popup = 0
+ " Debug of clang language client {{{
+ let g:LanguageClient_serverCommands = {
+  \ 'cpp': ['clangd'],
+  \ }
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+ let g:LanguageClient_serverStderr = '/tmp/clangd.stderr'
+ " }}}
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+augroup languageserver
+   autocmd!
+   function! SetLSPShortcuts()
+     " ...
+     " Previous bindings
+     " ...
+     nnoremap <leader>ll :call LanguageClient#debugInfo()<CR>
+   endfunction()
+ augroup end
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ })
+        autocmd FileType c setlocal omnifunc=lsp#complete
+        autocmd FileType cpp setlocal omnifunc=lsp#complete
+        autocmd FileType objc setlocal omnifunc=lsp#complete
+        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+    augroup end
+endif
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(lsp-definition)
+nmap <silent> gy <Plug>(lsp-type-definition)
+nmap <silent> gi <Plug>(lsp-implementation)
+nmap <silent> gr <Plug>(lsp-references)
 
-" Use K to show documentation in preview window
+"" Use 'k' to show documentation in preview window
 nnoremap <silent> <leader>k :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    execute 'LspHover'
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Using CocList
-" Show all diagnostics
-"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-"nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-"nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-"nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-"nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-"nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
- "}}}
+" }}}
