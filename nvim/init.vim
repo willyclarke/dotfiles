@@ -236,10 +236,7 @@ nnoremap <C-j> :m .+1<CR>==
 " Move a line upwards
 nnoremap _ kddpk
 nnoremap <C-k> :m .-2<CR>==
-" Uppercase word from insert mode
-inoremap <C-u> <esc>viwUea
-" Uppercase word from normal mode
-nnoremap <c-u> viwUel
+
 " Remap the ; key to the : to simplify use of commands, and wise versa.
 nnoremap : ;
 nnoremap ; :
