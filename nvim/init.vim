@@ -121,6 +121,10 @@ let maplocalleader="\<space>"
 set relativenumber                       " show the relative line number on the cursor line
 set number                               " show line numbers
 set numberwidth=5                        " allow x chars for number column
+augroup toggle_relative_number           " Enable relative numbers in normal mode
+  autocmd InsertEnter * :setlocal norelativenumber
+  autocmd InsertLeave * :setlocal relativenumber
+augroup END
 set nobackup                             " don't backup files, use git ..."
 set noswapfile                           " avoid creating a swap file (after 200 chars?)"
 set laststatus=2                         " last window always has a statusline
