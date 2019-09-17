@@ -1127,7 +1127,7 @@ set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
-let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_auto_popup = 1
  " Debug of clang language client {{{
  let g:LanguageClient_serverCommands = {
   \ 'cpp': ['clangd'],
