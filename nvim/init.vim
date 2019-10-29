@@ -310,8 +310,8 @@ inoremap ``` ```<cr>```<esc>O
 inoremap <c-l> <right>
 " Move a line downwards
 inoremap <C-j> <Esc>:m .+1<CR>==gi
-" Move a line upwards
-inoremap <C-k> <Esc>:m .-2<CR>==gi
+" Move a line upwards in insert mode
+"inoremap <C-k> <Esc>:m .-2<CR>==gi
 " }}}
 
 " Visual mode mappings {{{
