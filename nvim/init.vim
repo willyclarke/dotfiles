@@ -204,6 +204,7 @@ nnoremap <Leader>u mz"zylo<C-r>=printf('U+%04X', char2nr(@z))<CR><ESC>`z
 nnoremap <leader>e :e %:h/<CR>
 nnoremap <leader>v :vsp %:h/<CR>
 nnoremap <leader>s :sp %:h/<CR>
+nnoremap <leader>t :vertical split<CR><C-w>l :terminal<CR>
 " Swap between c/cpp and h file.
 nnoremap <Leader>oc :e %<.cpp<CR>
 nnoremap <Leader>oh :e %<.h<CR>
