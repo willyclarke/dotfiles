@@ -875,7 +875,7 @@ iabbrev <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>
 iabbrev <silent> while while ()<Left><C-R>=Eatchar('\s')<CR>
 iabbrev <silent> fidx for (size_t Idx = 0; ///<!<CR>Idx <; ///<!<CR> ++Idx)<CR>{<CR><Up><Up><Up><Esc>f;i
 iabbrev <silent> faut for (auto E : )<CR>{<CR><Up><Up><Esc>f:a
-
+iabbrev <silent> fitr for (auto it = MyContainer.cbegin();  //!<<CR>it != MyContainer.cend();//!<<CR> ++it)<CR>{<CR><Up><Up><Up><Esc>fMciw
 iabbrev <silent> loginfo LOGINFO("{} -> {}", __FUNCTION__, "A text");
 iabbrev <silent> logerr LOGERROR("{} -> {}", __FUNCTION__, "A text");
 iabbrev <silent> sendl std::endl
@@ -1128,7 +1128,37 @@ set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
-let g:asyncomplete_auto_popup = 1
+
+" Force refresh completion
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+" By default asyncomplete will automatically show the autocomplete
+" popup menu as you start typing. If you would like to disable the
+" default behvior set g:asyncomplete_auto_popup to 0.
+let g:asyncomplete_auto_popup = 0
+
+" You can use the above <Plug>(asyncomplete_force_refresh) to show
+" the popup or can you tab to show the autocomplete.
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" To disable preview window:
+set completeopt-=preview
+
+" To enable preview window:
+"set completeopt+=preview
+
+" To auto close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
  " Debug of clang language client {{{
  let g:LanguageClient_serverCommands = {
   \ 'cpp': ['clangd'],
