@@ -83,6 +83,8 @@ let g:notes_directories = ['~/Development/VimNotes/user']
 autocmd BufNewFile,BufRead */.git/COMMIT_EDITMSG setlocal filetype=notes
 "}}}
 
+Plugin 'vimwiki/vimwiki'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
