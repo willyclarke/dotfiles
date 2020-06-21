@@ -17,17 +17,17 @@ endif
 " A link in the users home directory is needed to point to the nvim init files"
 source ~/.nvim_runtime/plugins.vim
 
+source ~/.nvim_runtime/leader.vim
 source ~/.nvim_runtime/abbreviations.vim
 source ~/.nvim_runtime/bufferautocomands.vim
-source ~/.nvim_runtime/buildsetup.vim
+source ~/.nvim_runtime/myliking.vim
 source ~/.nvim_runtime/colorscheme.vim
-source ~/.nvim_runtime/completion.vim
 source ~/.nvim_runtime/display.vim
-source ~/.nvim_runtime/leader.vim
-source ~/.nvim_runtime/linting.vim
 source ~/.nvim_runtime/mapmodecommands.vim
 source ~/.nvim_runtime/mapmodeins.vim
 source ~/.nvim_runtime/mapmodenorm.vim
 source ~/.nvim_runtime/mapmodevis.vim
-source ~/.nvim_runtime/myliking.vim
 source ~/.nvim_runtime/statusline.vim
+source ~/.nvim_runtime/buildsetup.vim
+source ~/.nvim_runtime/completion.vim
+source ~/.nvim_runtime/linting.vim
