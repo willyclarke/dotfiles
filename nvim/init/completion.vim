@@ -122,8 +122,8 @@ augroup languageserver
      " Previous bindings
      " ...
      nnoremap <leader>ll :call LanguageClient#debugInfo()<CR>
-   endfunction()
- augroup end
+   endfunction
+augroup end
 
 if executable('clangd')
     augroup lsp_clangd
@@ -158,3 +158,18 @@ function! s:show_documentation()
 endfunction
 
 " }}}
+
+" {{{ https://github.com/prabirshrestha/asyncomplete.vim
+" Tab completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+" Force refresh completion
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+" Auto popup
+" By default asyncomplete will automatically show the autocomplete popup menu as you start
+" typing. If you would like to disable the default behavior set g:asyncomplete_auto_popup
+" to 0.
+let g:asyncomplete_auto_popup = 0
+"}}}

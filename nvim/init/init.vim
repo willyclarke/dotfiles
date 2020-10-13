@@ -28,6 +28,8 @@ source ~/.nvim_runtime/mapmodeins.vim
 source ~/.nvim_runtime/mapmodenorm.vim
 source ~/.nvim_runtime/mapmodevis.vim
 source ~/.nvim_runtime/statusline.vim
-source ~/.nvim_runtime/buildsetup.vim
-source ~/.nvim_runtime/completion.vim
+""source ~/.nvim_runtime/buildsetup.vim
+""source ~/.nvim_runtime/completion.vim
+source ~/.nvim_runtime/completionrefact.vim
 source ~/.nvim_runtime/linting.vim
+

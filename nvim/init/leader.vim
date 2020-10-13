@@ -29,3 +29,44 @@ autocmd BufLeave *.{c,cpp} mark C
 " Set up the build system
 " }}}
 
+" Clang function {{{
+augroup ClangFormatSettings
+    autocmd!
+    " map to <Leader>cf in C++ code
+    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+    " if you install vim-operator-user
+    autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+augroup END
+
+" -----------------------------------------------------------
+" Pasted from
+" https://clang.llvm.org/docs/HowToSetupToolingForLLVM.html
+" -----------------------------------------------------------
+function! ClangCheckImpl(cmd)
+  if &autowrite | wall | endif
+  echo "Running " . a:cmd . " ..."
+  let l:output = system(a:cmd)
+  cexpr l:output
+  cwindow
+  let w:quickfix_title = a:cmd
+  if v:shell_error != 0
+    cc
+  endif
+  let g:clang_check_last_cmd = a:cmd
+endfunction
+
+function! ClangCheck()
+  let l:filename = expand('%')
+  if l:filename =~ '\.\(cpp\|cxx\|cc\|c\)$'
+    call ClangCheckImpl("clang-check" . l:filename)
+  elseif exists("g:clang_check_last_cmd")
+    call ClangCheckImpl(g:clang_check_last_cmd)
+  else
+    echo "Can't detect file's compilation arguments and no previous clang-check invocation!"
+  endif
+endfunction
+
+nmap <silent> <F5> :call ClangCheck()<CR><CR>
+
+" }}}

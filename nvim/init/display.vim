@@ -12,12 +12,22 @@ highlight CursorLine guifg=#ff8874 ctermfg=204 guibg=#011627 ctermbg=233 gui=NON
 " set listchars=tab:>~,nbsp:_,trail:.      " bread crumble the spaces and tabs
 "exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 "set list                                 " after the bread crumble; set the list
+let g:indentLine_char_list = ['|', '.', ':', '$']
 " }}}
 
 " Set up Chromatica c++ colorization {{{
 "
-let g:chromatica#libclang_path = '/usr/lib/llvm-3.9/lib/libclang.so'
+if g:os == "Darwin"
+  let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+else
+  let g:chromatica#libclang_path = '/usr/lib/llvm-3.9/lib/libclang.so'
+endif
 let g:chromatica#responsive_mode = 1
+let g:chromatica#enable_at_startup=1
+" }}}
+
+" Set up Language Server Protocol highlighting {{{
+let g:lsp_cxx_hl_use_text_props = 1
 " }}}
 
 " Set up syntax highlight to my likin {{{
@@ -29,6 +39,9 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_experimental_template_highlight = 0
 let g:cpp_concepts_highlight = 1
 let g:cpp_no_function_highlight = 0
+" Getting error messages without these ...
+highlight cppAccess guifg=#ff8874 ctermfg=204 guibg=#011627 ctermbg=233 gui=NONE cterm=NONE
+highlight cppStructure guifg=#ff8874 ctermfg=204 guibg=#011627 ctermbg=233 gui=NONE cterm=NONE
 " }}}
 
 " Never use arrows? {{{
