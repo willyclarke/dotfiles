@@ -19,7 +19,8 @@ Plugin 'tpope/vim-dispatch'
 "Plugin 'https://github.com/easymotion/vim-easymotion.git'
 
 Plugin 'vim-scripts/vimagit'
-Plugin 'gregsexton/gitv'
+"Plugin 'gregsexton/gitv'
+Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
 
 " Utilities
@@ -38,33 +39,24 @@ Plugin 'https://github.com/Yggdroot/indentLine.git'
 Plugin 'https://github.com/vim-scripts/SyntaxRange.git' " Needed for vimdeck...
 Plugin 'https://github.com/tybenz/vimdeck.git'
 
-" Themes to download
-"Plugin 'marcopaganini/termschool-vim-theme'
-"Plugin 'dracula/vim.git'
-"Plugin 'https://github.com/haishanh/night-owl.vim.git'
-"Plugin 'https://github.com/altercation/vim-colors-solarized.git'
-"Plugin 'https://github.com/archSeer/colibri.vim.git'
-"Plugin 'https://github.com/NLKNguyen/papercolor-theme.git'
-"Plugin 'https://github.com/joshdick/onedark.vim.git'
-"Plugin 'https://github.com/fenetikm/falcon.git'
-"Plugin 'https://github.com/lifepillar/vim-solarized8.git'
-"if has('nvim')
-"    Plugin 'Soares/base16.nvim'
-"    Plugin 'https://github.com/freeo/vim-kalisi.git'
-"endif
-
 " Development plugins
 Plugin 'rhysd/vim-clang-format.git'
 Plugin 'mileszs/ack.vim'
-"Plugin 'https://github.com/arakashic/chromatica.nvim.git'
+
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
-Plugin 'https://github.com/rust-lang/rust.vim.git'
-Plugin 'https://github.com/vim-syntastic/syntastic.git'
+Plugin 'https://github.com/vim-syntastic/syntastic.git' " Highlight errors in various programming languages
 
 Plugin 'prabirshrestha/async.vim'
 Plugin 'prabirshrestha/vim-lsp'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'mattn/vim-lsp-settings'
+
+" chromatica is deprecated now
+Plugin 'https://github.com/arakashic/chromatica.nvim.git'
+" try this instead
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+"Plugin 'jackguo380/vim-lsp-cxx-highlight'
 
 if g:os == "Darwin"
   Plugin 'https://github.com/rizzatti/dash.vim.git'
@@ -72,9 +64,9 @@ endif
 
 
 " Notes {{{
-Plugin 'https://github.com/xolox/vim-misc.git'
-Plugin 'https://github.com/xolox/vim-notes.git'
-let g:notes_directories = ['~/Development/VimNotes/user']
+"Plugin 'https://github.com/xolox/vim-misc.git'
+"Plugin 'https://github.com/xolox/vim-notes.git'
+"let g:notes_directories = ['~/Development/VimNotes/user']
 
 " Using the notes file type for git commit messages
 " If you write your git commit messages in Vim and want to use the

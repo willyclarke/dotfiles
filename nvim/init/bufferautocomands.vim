@@ -32,11 +32,22 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
 
-augroup cline
-    au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
-augroup END
+function! CursorLineCfg()
+  highlight CursorLine guifg=#ff8874 ctermfg=204 guibg=#011627 ctermbg=233 gui=NONE cterm=NONE
+  set cursorline
+endfunction
+
+"augroup CursorLine
+"  au!
+"  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"  au WinLeave * setlocal nocursorline
+"augroup END
+"augroup cline
+"    au!
+"    au WinLeave,InsertEnter * set nocursorline
+"    "au WinEnter,InsertLeave * set cursorline
+"    au WinEnter,InsertLeave * call CursorLineCfg()
+"augroup END
 
 " }}}
 
@@ -46,10 +57,10 @@ augroup END
 " 2: move to the end of the scope with the % sign
 " 3: create a fold by typing zf'b
 " The folded code should be persistent.
-autocmd BufWinLeave *.* mkview " restor the foldinging view of files.
-autocmd BufWinEnter *.* silent loadview
-:highlight Folded guibg=grey guifg=black
-:highlight FoldColumn guibg=darkgrey guifg=white
+"autocmd BufWinLeave *.* mkview " restor the foldinging view of files.
+"autocmd BufWinEnter *.* silent loadview
+":highlight Folded guibg=grey guifg=black
+":highlight FoldColumn guibg=darkgrey guifg=white
 " }}}
 
 " Set up the persistent undo. {{{
