@@ -52,9 +52,7 @@ Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'mattn/vim-lsp-settings'
 
-" chromatica is deprecated now
-Plugin 'https://github.com/arakashic/chromatica.nvim.git'
-" try this instead
+" For highlighting these may be useful:::
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 "Plugin 'jackguo380/vim-lsp-cxx-highlight'
 
