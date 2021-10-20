@@ -24,6 +24,7 @@ nnoremap <Leader>oH :e %<.hpp<CR>
 " Go to previous source file with mark C
 autocmd BufLeave *.{h,hpp} mark H
 autocmd BufLeave *.{c,cpp} mark C
+
 " NOW WE CAN:
 " - Take over the world
 " Set up the build system

@@ -12,52 +12,19 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
-"Plugin 'tpope/vim-scriptease'
-"Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
-"Plugin 'https://tpope.io/vim/repeat.git'              " Needed by vim-sneak
-"Plugin 'https://github.com/easymotion/vim-easymotion.git'
-
 Plugin 'vim-scripts/vimagit'
+
 "Plugin 'gregsexton/gitv'
 Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
 
-" Utilities
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mhinz/vim-startify'
-Plugin 'https://github.com/sjl/gundo.vim.git'
-Plugin 'https://github.com/ryanoasis/vim-devicons.git'
-
-" Fancy up the view plugins
-Plugin 'https://github.com/Yggdroot/indentLine.git'
-
-"Plugin 'https://github.com/sheerun/vim-polyglot.git' " Language packs for many languages.
-Plugin 'https://github.com/vim-scripts/SyntaxRange.git' " Needed for vimdeck...
-Plugin 'https://github.com/tybenz/vimdeck.git'
-
-" Development plugins
-Plugin 'rhysd/vim-clang-format.git'
-Plugin 'mileszs/ack.vim'
-
-Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
-"Plugin 'https://github.com/vim-syntastic/syntastic.git' " Highlight errors in various programming languages
-
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'mattn/vim-lsp-settings'
-""Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plugin 'ziglang/zig.vim'
-Plugin 'sindrets/diffview.nvim.git'
-" For highlighting these may be useful:::
-"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-"Plugin 'jackguo380/vim-lsp-cxx-highlight'
-Plugin 'marko-cerovac/material.nvim'
+Plugin 'https://github.com/nvim-treesitter/nvim-treesitter.git', {'do': ':TSUpdate'}
+Plugin 'neovim/nvim-lspconfig'
+Plugin 'nvim-lua/completion-nvim'
+Plugin 'nvim-lua/lsp-status.nvim'
+Plugin 'nvim-lua/diagnostic-nvim'
+""Plugin 'hrsh7th/nvim-compe'
 
 if g:os == "Darwin"
   Plugin 'https://github.com/rizzatti/dash.vim.git'
@@ -70,7 +37,7 @@ function! GetNVimVersion()
     return matchstr(s, 'NVIM v\zs[^\n]*')
 endfunction
 
-source  ~/.nvim_runtime/plugintelescope.vim
+"source  ~/.nvim_runtime/plugintelescope.vim
 
 "}}}
 
@@ -85,8 +52,6 @@ source  ~/.nvim_runtime/plugintelescope.vim
 " your git commit messages you can add the following line to your [vimrc script] vimrc:
 autocmd BufNewFile,BufRead */.git/COMMIT_EDITMSG setlocal filetype=notes
 " }}} " Notes fold ends here
-
-Plugin 'vimwiki/vimwiki'
 
 " All of your Plugins must be added before the following line {{{
 call vundle#end()            " required

@@ -33,6 +33,7 @@ function! GitInfo()
     return ' '.fugitive#head()
   else
     return ''
+  endif
 endfunction
 
 function! GitBranch()
@@ -42,6 +43,10 @@ endfunction
 function! StatuslineGit()
   let l:branchname = GitBranch()
   return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+function! CodeFunction()
+  return nvim_treesitter#statusline(90)
 endfunction
 
 " Automatically change the statusline color depending on mode
@@ -78,6 +83,7 @@ function! ActiveStatus()
   let statusline.="%{&readonly?'\ \ ':''}"
   let statusline.="\ "
   let statusline.="\ %{LinterStatus()}"
+  let statusline.="\ %{CodeFunction()}"
   let statusline.="\ "
   let statusline.="%="                    " Go rigth
   let statusline.="\ %{''!=#&filetype?&filetype:'none'}"

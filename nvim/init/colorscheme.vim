@@ -12,6 +12,7 @@ try
    "let g:falcon_background = 0
    "let g:falcon_inactive = 1
    "colorscheme falcon                " provides some features unique to neovim
+
 " Set up my own colorscheme {{{
 " Vim color file - duoduo
 " Maintainer:	Yggdroot <archofortune@gmail.com>
@@ -24,11 +25,12 @@ if version > 580
 endif
 
 set background=dark
-" in case t_Co alone doesn't work, add this as well:
+ "in case t_Co alone doesn't work, add this as well:
 "let &t_AB="\e[48;5;%dm"
 "let &t_AF="\e[38;5;%dm"
 set t_Co=256
-"let g:colors_name = "duoduo"
+let g:colors_name = "duoduo"
+
 
 highlight Normal guisp=#191919 guifg=#ffe2d2 guibg=#191919 gui=NONE ctermfg=255 ctermbg=235 cterm=NONE
 
@@ -62,7 +64,7 @@ highlight PMenuSel guisp=#a0cf63 guifg=#000000 guibg=#a0cf63 gui=NONE ctermfg=16
 highlight Search guisp=#ffff45 guifg=#000000 guibg=#ffff45 gui=NONE ctermfg=16 ctermbg=227 cterm=NONE
 highlight Delimiter guisp=NONE guifg=#ffa500 guibg=NONE gui=NONE ctermfg=214 cterm=NONE
 highlight Statement guisp=NONE guifg=#f5f55d guibg=NONE gui=bold ctermfg=227 cterm=bold
-highlight Comment guisp=NONE guifg=#7cbdd6 guibg=NONE gui=NONE ctermfg=74 cterm=NONE
+highlight Comment guisp=NONE guifg=#d99d18 guibg=NONE gui=NONE ctermfg=74 cterm=NONE
 highlight Character guisp=NONE guifg=#ffa0a0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
 highlight Number guisp=NONE guifg=#8f8ffe guibg=NONE gui=bold ctermfg=204 cterm=bold
 highlight Boolean guisp=NONE guifg=#ffa0a0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
@@ -110,6 +112,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
     " no plugins available
     colorscheme default
 endtry
+
 "set background=dark
 hi ColorColumn ctermbg=darkgrey guibg=black
 " fix background color behaviour
@@ -122,4 +125,5 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 
 let g:terminal_color_4 = '#00aaff' " Get better directory listing
 
-" }}}
+"}}}
+

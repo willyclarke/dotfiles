@@ -2,6 +2,8 @@
 " This file is used to source the other files.
 " @author: 'Willy Clarke'
 
+" A link in the users home directory is needed to point to the nvim init files"
+" The dotfiles directory for neovim need to be pointed to by .nvim_runtime
 set runtimepath+=.nvim_runtime
 
 " Try to detect the os that we are on ... {{{
@@ -14,15 +16,17 @@ if !exists("g:os")
 endif
 " }}} os dectection fold
 
-" A link in the users home directory is needed to point to the nvim init files"
-source ~/.nvim_runtime/plugins.vim
+source ~/.nvim_runtime/leader.vim " Leader may be used in the plugins.vim so it is loaded first.
 
-source ~/.nvim_runtime/leader.vim
+source ~/.nvim_runtime/plugins.vim
+""source ~/.nvim_runtime/pluginstresitter.vim " alternate small plugin file. Do not do both. For debugging ..."
+
 source ~/.nvim_runtime/abbreviations.vim
 source ~/.nvim_runtime/bufferautocomands.vim
 source ~/.nvim_runtime/myliking.vim
 source ~/.nvim_runtime/colorscheme.vim
 source ~/.nvim_runtime/display.vim
+source ~/.nvim_runtime/wordhighlight.vim
 source ~/.nvim_runtime/mapmodecommands.vim
 source ~/.nvim_runtime/mapmodeins.vim
 source ~/.nvim_runtime/mapmodenorm.vim
