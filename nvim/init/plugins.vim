@@ -57,7 +57,6 @@ Plugin 'sindrets/diffview.nvim.git'
 " For highlighting these may be useful:::
 "Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 "Plugin 'jackguo380/vim-lsp-cxx-highlight'
-Plugin 'marko-cerovac/material.nvim'
 
 if g:os == "Darwin"
   Plugin 'https://github.com/rizzatti/dash.vim.git'
