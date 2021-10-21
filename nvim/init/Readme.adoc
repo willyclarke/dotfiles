@@ -31,6 +31,9 @@ nvim +PluginUpdate
 
 == 4. Additional
 
+* Get the nightly build of neovim at:
+  https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+
 * Run the :checkhealth command to see what is missing on your platform. Typically there will
   be some complaints about pip3/python not installed.
 
@@ -38,5 +41,17 @@ nvim +PluginUpdate
   with 'sudo apt install clangd'
 
 * To get nice fonts for the status line I recommend installing the nerd fonts package. Take a look:
+https://github.com/ryanoasis/nerd-fonts.git
 
+* Clone the repository with depth of 1 to avoid the repository getting too big; it contains over
+5000 files (as per 2021-10-21).
+
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
+
+* Enter the nerd-fonts directory and install all the fonts with the 'setup.sh' script. Note that this
+installs a lot of fonts. After the dust settles you should be able to select a font with the icons
+and ligatures, eg. "FiraCode".
+
+* There is also a nice description on how to set up development icons at:
 https://github.com/ryanoasis/vim-devicons.git
+
