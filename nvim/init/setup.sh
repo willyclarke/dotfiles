@@ -14,7 +14,8 @@ mkdir ~/bin
 pushd ~/bin || return
 
 if [[ "$platform" == "linux" ]]; then
-  wget --backups=2 --continue https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
 elif [[ "$platform" == "osx" ]]; then
   wget --backups=2 --continue https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
   tar -xzf nvim-macos.tar.gz
