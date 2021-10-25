@@ -4,7 +4,7 @@ platform='unknown'
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         platform='linux'
-        ~/bin/nvim-appimage $@
+        ~/bin/nvim.appimage $@
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         platform='osx'
         ~/bin/nvim-osx64/bin/nvim $@
