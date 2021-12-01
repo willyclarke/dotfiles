@@ -1,51 +1,22 @@
-local on_windows = vim.loop.os_uname().version:match 'Windows'
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
-local function join_paths(...)
-  local path_sep = on_windows and '\\' or '/'
-  local result = table.concat({ ... }, path_sep)
-  return result
+print(install_path)
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-vim.cmd [[set runtimepath=$VIMRUNTIME]]
+return require('packer').startup(function(use)
+use { 'neovim/nvim-lspconfig' }
+use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
+use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-local temp_dir
-if on_windows then
-  temp_dir = vim.loop.os_getenv 'TEMP'
-else
-  temp_dir = '/tmp'
-end
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
 
-vim.cmd('set packpath=' .. join_paths(temp_dir, 'nvim', 'site'))
-
-local package_root = join_paths(temp_dir, 'nvim', 'site', 'pack')
-local install_path = join_paths(package_root, 'packer', 'start', 'packer.nvim')
-local compile_path = join_paths(install_path, 'plugin', 'packer_compiled.lua')
-
-local function load_plugins()
-  require('packer').startup {
-    {
-      { 'wbthomason/packer.nvim' },
-      { 'neovim/nvim-lspconfig' },
-      { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' },
-      { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    },
-    config = {
-      package_root = package_root,
-      compile_path = compile_path,
-    },
-  }
-end
-
-print('will check the install of packer')
-
-if vim.fn.isdirectory(install_path) == 0 then
-  vim.fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
-  load_plugins()
-  require('packer').sync()
-else
-  load_plugins()
-  require('packer').sync()
-  print('Have loaded config')
-  print(install_path)
-end

@@ -2,7 +2,7 @@
 -- https://yashguptaz.hashnode.dev/configuring-neovim-05-with-lua-the-basics
 -- which is a tutorial on how to set up neovim with Lua
 --
-print('Loading init.lua')
+require('plugins') 
 
 require('options')
 require('keymaps')
@@ -14,5 +14,4 @@ require('wwtreesitter')
 require('wwstatusline')
 require('wwnvimlspconfig')
 
-require('plugins') -- This one affects runtimepath
 
