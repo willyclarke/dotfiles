@@ -13,5 +13,6 @@ require('wwtelescope')
 require('wwtreesitter')
 require('wwstatusline')
 require('wwnvimlspconfig')
+require('wwnvimcmpconfig')
 
 
