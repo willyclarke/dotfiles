@@ -12,7 +12,8 @@ require('wwneogit')
 require('wwtelescope')
 require('wwtreesitter')
 require('wwstatusline')
-require('wwnvimlspconfig')
 require('wwnvimcmpconfig')
+require('wwnvimlspconfig')
 
-
+-- Reuse some of my older files - create a Lua config for this ?
+vim.cmd([[source ~/.config/nvim/abbreviations.vim]])
