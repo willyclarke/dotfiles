@@ -32,11 +32,41 @@ nnoremap("<C-k>", ":m .-2<CR>==")
 vim.api.nvim_set_keymap("n", ":", ";", { noremap = true, silent = false})
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true, silent = false})
 
+-- Remap the C-g which normally shows info about the file to show info about
+-- the current method.
+nnoremap('<C-g>', ':echo getline(search(\'\v^[[:alpha:]$_]\', \"bn\", 1, 100))<CR>')
+
+-- ==================  make sarches always appear in centre of page
+nnoremap('n', 'nzz')
+nnoremap('N', 'Nzz')
+nnoremap('*', '*zz')
+nnoremap('#', '#zz')
+nnoremap('g*','g*zz')
+nnoremap('g#','g#zz')
+-- clear search highlighting with enter
+nnoremap('<cr>', ':noh<CR><CR>:<backspace>')
+
 nnoremap("<C-r>", ":luafile %<CR>")
 nnoremap("<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
-nnoremap("<leader>se", ":luafile ~/.config/nvim/init.lua<CR>")
-nnoremap("<leader>ve", ":e ~/.config/nvim/init.lua<CR>")
+
+-- Make it easier to edit the init.lua file
+nnoremap("<leader>se", ":luafile $MYVIMRC<CR>")
+nnoremap("<leader>ve", ":vsplit $MYVIMRC<CR>")
+
+-- Save my buffer
 nnoremap("<leader>fs", ":w<CR>")
+
+-- From Steve Losh youtube walkthrough : Close all other folds but the one I am
+-- on at the moment.
+nnoremap('<leader>z', 'zMzvzz')
+nnoremap('<tab>', '%')
+
+-- Copy current absolute filename into register
+nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
+-- Yank file of which filename was already copied into register.
+nnoremap('<leader>yf', ':%y+<cr>')
+
+-- May add support for these later, since they look interresting ...
 nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
 nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
 nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
