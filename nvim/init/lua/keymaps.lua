@@ -17,6 +17,17 @@ vim.g.maplocalleader = ' '
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
+-- Add " around words. FIXME: I really wanted this to use the ''' symbol
+nnoremap('<leader>1', 'viw<esc>a\"<esc>hbi\"<esc>lel')
+-- Add ' around words' FIXME: I really wanted this to use the '"' symbol.
+nnoremap('<leader>2', 'viw<esc>a\'<esc>hbi\'<esc>lel')
+-- Move a line downwards
+nnoremap("-", "ddp")
+nnoremap("<C-j>", ":m .+1<CR>==")
+--" Move a line upwards
+nnoremap("_", "kddpk")
+nnoremap("<C-k>", ":m .-2<CR>==")
+
 -- Swap ; with :
 vim.api.nvim_set_keymap("n", ":", ";", { noremap = true, silent = false})
 vim.api.nvim_set_keymap("n", ";", ":", { noremap = true, silent = false})
