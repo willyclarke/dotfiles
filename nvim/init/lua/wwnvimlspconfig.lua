@@ -9,7 +9,7 @@ _G.load_lsp_config = function()
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    print('on attach called')
+    print('Hooray -- on attach called. Setting up lsp keymaps ...')
 
     -- Mappings.
     local opts = { noremap = true, silent = true }
@@ -46,15 +46,3 @@ _G.load_lsp_config = function()
 end
 
 _G.load_lsp_config()
-
--- Enable the following language servers
---local servers = { 'clangd' }
---for _, lsp in ipairs(servers) do
---  nvim_lsp[lsp].setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---  }
---  print(lsp)
---  print(vim.inspect(vim.lsp.buf_get_clients()))
---end
-print('nvim_lsp has been set up')

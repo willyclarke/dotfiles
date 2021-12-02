@@ -8,6 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+  -- Language server and autocompletion plugins
 use { 'neovim/nvim-lspconfig' }
 use { 'hrsh7th/cmp-nvim-lsp' }
 use { 'hrsh7th/cmp-nvim-lsp' }

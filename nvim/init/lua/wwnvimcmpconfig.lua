@@ -55,4 +55,3 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['clangd'].setup {
   capabilities = capabilities
 }
-
