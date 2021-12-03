@@ -13,6 +13,9 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+--
+-- NORMAL MODE REMAPPINGS --
+--
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
@@ -70,3 +73,29 @@ nnoremap('<leader>yf', ':%y+<cr>')
 nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
 nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
 nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
+
+--
+-- INSERT MODE REMAPPINGS --
+--
+
+inoremap('jk', '<esc>')
+-- Disable the <esc> key in insert mode for now ..."
+-- inoremap <esc> <nop>
+-- DIY autoclosing
+inoremap('(;', '();<left><left>')
+inoremap('[;', '[];<left><left>')
+inoremap('(', '()<left>')
+inoremap('[', '[]<left>')
+inoremap('{<cr>', '{<cr>}<esc>O')
+inoremap('(<cr>', '(<cr>)<esc>O')
+inoremap('[<cr>', '[<cr>]<esc>O')
+inoremap('"', '""<left>')
+inoremap('\'', '\'\'<left>')
+inoremap('`', '``<left>')
+inoremap('```', '```<cr>```<esc>O')
+-- Jump over the doubled up chars above you can use Ctrl-l
+inoremap('<c-l>', '<right>')
+-- Move a line downwards
+inoremap('<C-j>', '<Esc>:m .+1<CR>==gi')
+-- Move a line upwards in insert mode
+inoremap('<C-k>', '<Esc>:m .-2<CR>==gi')

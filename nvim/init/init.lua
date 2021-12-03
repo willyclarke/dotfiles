@@ -15,6 +15,9 @@ require('wwstatusline')
 require('wwnvimcmpconfig')
 require('wwnvimlspconfig')
 
+-- require('ww-vgit-config') -- Alternative to gitsigns, dont use both.
+require('ww-gitsigns-config')
+
 -- Reuse some of my older files - create a Lua config for this ?
 vim.cmd([[source ~/.config/nvim/abbreviations.vim]])
 vim.cmd([[source ~/.config/nvim/colorscheme.vim]])
