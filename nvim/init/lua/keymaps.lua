@@ -99,3 +99,13 @@ inoremap('<c-l>', '<right>')
 inoremap('<C-j>', '<Esc>:m .+1<CR>==gi')
 -- Move a line upwards in insert mode
 inoremap('<C-k>', '<Esc>:m .-2<CR>==gi')
+
+--
+-- VISUAL MODE MAPPINGS {{{
+--
+vnoremap('<tab>', '%')
+-- Move a line downwards
+vnoremap('<C-j>', ':m \'>+1<CR>==gv')
+-- Move a line upwards
+vnoremap('<C-k>', ':m \'<-2<CR>==gv')
+-- }}}
