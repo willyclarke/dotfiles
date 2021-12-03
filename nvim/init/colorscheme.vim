@@ -1,28 +1,6 @@
 
 " Theme setup {{{
 try
-   "colorscheme dracula
-   "colorscheme kalisi
-   "colorscheme termschool
-   "colorscheme default              " Sometimes you want just plain vanilla....
-   "colorscheme night-owl
-   "colorscheme onedark
-   "colorscheme papercolor
-   "colorscheme solarized8_light
-   "let g:falcon_background = 0
-   "let g:falcon_inactive = 1
-   "colorscheme falcon                " provides some features unique to neovim
-" Set up my own colorscheme {{{
-" Vim color file - duoduo
-" Maintainer:	Yggdroot <archofortune@gmail.com>
-
-if version > 580
-	hi clear
-	if exists("syntax_on")
-		syntax reset
-	endif
-endif
-
 set background=dark
 " in case t_Co alone doesn't work, add this as well:
 "let &t_AB="\e[48;5;%dm"
@@ -104,13 +82,11 @@ highlight lCursor guifg=#000000 guibg=#00ffff guisp=#00ffff gui=NONE ctermfg=NON
 highlight ColorColumn guisp=#9c4343 guifg=NONE guibg=#202020 gui=NONE ctermbg=131 cterm=NONE
 highlight CursorLineNr guisp=NONE guifg=#90ee90 guibg=NONE gui=NONE ctermfg=120 cterm=NONE
 
-set background=dark
 " }}}"
 catch /^Vim\%((\a\+)\)\=:E185/
     " no plugins available
     colorscheme default
 endtry
-"set background=dark
 hi ColorColumn ctermbg=darkgrey guibg=black
 " fix background color behaviour
 hi Normal ctermbg=NONE
