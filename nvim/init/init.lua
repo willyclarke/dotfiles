@@ -8,12 +8,12 @@ require('options')
 require('keymaps')
 
 -- Configure the various plugins
-require('wwneogit')
-require('wwtelescope')
-require('wwtreesitter')
-require('wwstatusline')
-require('wwnvimcmpconfig')
-require('wwnvimlspconfig')
+require('ww-neogit-config')
+require('ww-telescope-config')
+require('ww-treesitter-config')
+require('ww-statusline')
+require('ww-nvimcmp-config')
+require('ww-nvimlsp-config')
 
 -- require('ww-vgit-config') -- Alternative to gitsigns, dont use both.
 require('ww-gitsigns-config')
