@@ -21,9 +21,6 @@ use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
 use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
--- Visual Git Plugin for Neovim to enhance your git experience.
--- use { 'tanvirtin/vgit.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-
 -- Super fast git decorations implemented purely in lua/teal.
 use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim', tag = 'release' }, -- tag = 'release' -- To use the latest release
 }
