@@ -29,7 +29,7 @@ nnoremap('-', 'ddp')
 nnoremap('<C-j>', ':m .+1<CR>==')
 --" Move a line upwards
 nnoremap("_", "kddpk")
-nnoremap('<C-k>', ':m .-2<CR>==') -- This one does not work!!! FIXME: (Willy Clarke) 
+nnoremap('<C-k>', ':m .-2<CR>==') 
 
 -- Swap ; with :
 vim.api.nvim_set_keymap("n", ":", ";", { noremap = true, silent = false})
