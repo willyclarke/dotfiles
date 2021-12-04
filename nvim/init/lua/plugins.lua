@@ -23,6 +23,9 @@ use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 -- Super fast git decorations implemented purely in lua/teal.
 use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim', tag = 'release' }, -- tag = 'release' -- To use the latest release
+
+-- Neovim plugin to comment in and out text.
+use { 'b3nj5m1n/kommentary' }
 }
 
   -- Automatically set up your configuration after cloning packer.nvim

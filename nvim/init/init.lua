@@ -17,6 +17,7 @@ require('ww-nvimlsp-config')
 
 -- require('ww-vgit-config') -- Alternative to gitsigns, dont use both.
 require('ww-gitsigns-config')
+require('ww-kommentary-config')
 
 -- Reuse some of my older files - create a Lua config for this ?
 vim.cmd([[source ~/.config/nvim/abbreviations.vim]])
