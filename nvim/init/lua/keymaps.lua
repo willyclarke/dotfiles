@@ -49,7 +49,6 @@ nnoremap('g#','g#zz')
 -- clear search highlighting with enter
 nnoremap('<cr>', ':noh<CR><CR>:<backspace>')
 
-nnoremap("<C-r>", ":luafile %<CR>")
 nnoremap("<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 
 -- Make it easier to edit the init.lua file
