@@ -1,0 +1,35 @@
+= Installation
+
+This is a neovim configuration mostly based on lua. There are still a couple
+of vim files in transition to lua.
+
+The plugin manager used for these files is called 'packer'.
+
+== Get the dotfiles
+
+$ git clone https://github.com/willyclarke/dotfiles.git ~/Development/dotfiles
+
+$ mkdir -p ~/.config/nvim
+
+$ ln -s ~/Development/dotfiles/nvim/init/init.lua ~/.config/nvim
+
+== Update plugins
+
+* start nvim and do :PackerInstall FIXME: (Willy Clarke) check correctness)
+
+
+== Get the latest neovim
+
+=== On linux
+
+Go to the following page:
+
+https://github.com/neovim/neovim/releases/nightly
+
+=== On Osx
+To install the latest, potentially unstable, development version of Neovim:
+
+$ brew install --HEAD neovim
+
+=== On Windows ???
+
