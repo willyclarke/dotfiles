@@ -6,6 +6,7 @@ require('plugins')
 
 require('options')
 require('keymaps')
+require('settings')   
 
 -- Configure the various plugins
 require('ww-neogit-config')

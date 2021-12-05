@@ -40,5 +40,19 @@ function M.create_augroup(autocmds, name)
     cmd('augroup END')
 end
 
+function M.remove_trailing_space(str)
+  str = string.gsub(str, '[ \t]+%f[\r\n%z]', '')
+end
+
+-- https://bit.ly/3g6vYIW
+-- https://neovim.discourse.group/t/fixing-a-function-that-receives-commands-as-arguments/993/4
+-- https://dev.to/voyeg3r/writing-useful-lua-functions-to-my-neovim-14ki
+function _G.preserve(cmd)
+    cmd = string.format('keepjumps keeppatterns execute %q', cmd)
+    local original_cursor = vim.fn.winsaveview()
+    vim.api.nvim_command(cmd)
+    vim.fn.winrestview(original_cursor)
+end
+
 return M
 -- stylua: ignore end
