@@ -29,5 +29,16 @@ function M.tnoremap(lhs, rhs) M.noremap('t', lhs, rhs) end
 function M.exprinoremap(lhs, rhs) M.exprnoremap('i', lhs, rhs) end
 
 function M.exprnnoremap(lhs, rhs) M.exprnoremap('n', lhs, rhs) end
+
+-- Lua table of autocmds as an argument, and creates an augroup
+function M.create_augroup(autocmds, name)
+    cmd('augroup ' .. name)
+    cmd('autocmd!')
+    for _, autocmd in ipairs(autocmds) do
+        cmd('autocmd ' .. table.concat(autocmd, ' '))
+    end
+    cmd('augroup END')
+end
+
 return M
 -- stylua: ignore end
