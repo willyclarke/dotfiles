@@ -12,11 +12,13 @@ require('settings')
 require('ww-neogit-config')
 require('ww-telescope-config')
 require('ww-treesitter-config')
-require('ww-statusline')
 require('ww-nvimcmp-config')
 require('ww-nvimlsp-config')
 require('ww-gitsigns-config') -- require('ww-vgit-config') -- Alternative to gitsigns, dont use both.
+require('ww-nvim-gps-config')
+require('ww-lualine-config')
 require('ww-kommentary-config')
+-- require('ww-statusline') -- My take on a status line
 
 -- Reuse some of my older files - create a Lua config for this ?
 vim.cmd([[source ~/.config/nvim/vim/abbreviations.vim]])
