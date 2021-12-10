@@ -52,8 +52,8 @@ iabbrev <silent> fixme FIXME: (Willy Clarke)
 iabbrev <silent> bugf BUGFIX:
 iabbrev <silent> enha ENHANCEMENT:
 iabbrev <silent> w@ willy@clarke.no
-iabbrev <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>
-iabbrev <silent> while while ()<Left><C-R>=Eatchar('\s')<CR>
+iabbrev <silent> if if (<C-R>=Eatchar('\s')<CR>
+iabbrev <silent> while while (<C-R>=Eatchar('\s')<CR>
 iabbrev <silent> fidx for (size_t Idx = 0; ///<!<CR>Idx <; ///<!<CR> ++Idx)<CR>{<CR><Up><Up><Up><Esc>f;i
 iabbrev <silent> faut for (auto E : )<CR>{<CR><Up><Up><Esc>f:a
 iabbrev <silent> fitr for (auto it = MyContainer.cbegin();  //!<<CR>it != MyContainer.cend();//!<<CR> ++it)<CR>{<CR><Up><Up><Up><Esc>fMciw
