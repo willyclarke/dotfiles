@@ -5,18 +5,31 @@ of vim files in transition to lua.
 
 The plugin manager used for these files is called 'packer'.
 
+== Get the stable neovim appimage
+
+Check out the wonderful information at https://neovim.io/
+
+Head over to https://github.com/neovim/neovim/wiki/Installing-Neovim and click on the
+Install from download link 'Latest stable release'. That should take you to a download page for all platforms.
+
+Scroll down to the bottom of the file and get the asset (application) that suits your platform.
+
+For Linux:
+https://github.com/neovim/neovim/releases/download/v0.6.0/nvim.appimage
+
+For OSX:
+https://github.com/neovim/neovim/releases/download/v0.6.0/nvim-macos.tar.gz
+
 == Get the dotfiles
 
 $ git clone https://github.com/willyclarke/dotfiles.git ~/Development/dotfiles
 
-$ mkdir -p ~/.config/nvim
-
-$ ln -s ~/Development/dotfiles/nvim/init/init.lua ~/.config/nvim
+$ ln -s ~/Development/dotfiles/nvim/init ~/.config/nvim
 
 == Update plugins
 
-* start nvim and do :PackerInstall FIXME: (Willy Clarke) check correctness)
-
+There is a setup.sh script associated included which may be useful for setting up neovim with this configuration.
+Take a look at the content before running it. It will wipe your exisiting ~/.config/nvim config.
 
 == Get the latest neovim
 
