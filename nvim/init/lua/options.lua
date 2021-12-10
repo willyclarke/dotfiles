@@ -54,6 +54,7 @@ vim.o.exrc            = true
 vim.o.secure          = true
 vim.o.wildmenu        = true      -- Display all matching files when we tab complete
 vim.o.path            = '**'
+vim.o.autochdir       = true
 -- stylua: ignore end
 
 -- Highlight on yank
