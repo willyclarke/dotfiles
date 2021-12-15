@@ -98,7 +98,7 @@ inoremap('<c-l>', '<right>')
 -- Move a line downwards
 inoremap('<C-j>', '<Esc>:m .+1<CR>==gi')
 -- Move a line upwards in insert mode
-inoremap('<C-k>', '<Esc>:m .-2<CR>==gi')
+-- inoremap('<C-k>', '<Esc>:m .-2<CR>==gi') -- This one disables vim's ability to do digraphs.
 
 --
 -- VISUAL MODE MAPPINGS {{{
