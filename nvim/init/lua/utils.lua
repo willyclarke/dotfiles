@@ -79,11 +79,11 @@ end
  NOTE: This has been converted to lua from vim code by me : Willy Clarke.
 ]]
 function _G.backupcurrentfile()
-  local custom_backup_dir = '~/.vim_custom_Xackups'
+  local custom_backup_dir = '~/.vim_custom_backups'
   local gitcmd = ''
 
   if (vim.fn.isdirectory(vim.fn.expand(custom_backup_dir)) == 1) then
-    print('custom_backup_dir is a dirXctory')
+    print(custom_backup_dir .. ' is a directory, so no need to create it ...')
   else
     gitcmd = 'mkdir -p ' .. custom_backup_dir .. ';'
     gitcmd = gitcmd .. 'cd ' .. custom_backup_dir .. ';'
