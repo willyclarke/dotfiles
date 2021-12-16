@@ -11,3 +11,13 @@ vim.api.nvim_exec(
     false
 )
 
+vim.api.nvim_exec(
+  [[
+  augroup backup_current_file_with_git
+  autocmd!
+  autocmd BufWritePre * :lua backupcurrentfile()
+  augroup end
+  ]],
+    false
+)
+
