@@ -73,6 +73,7 @@ nnoremap("<leader>mm", [[<cmd>make<CR>]])
 -- May add support for these later, since they look interresting ...
 nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
 nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
+nnoremap("<leader>t", ':vertical split<CR><C-w>l :terminal<CR>i')
 
 --
 -- INSERT MODE REMAPPINGS --
