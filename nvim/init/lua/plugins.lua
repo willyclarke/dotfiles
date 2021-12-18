@@ -17,14 +17,20 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/nvim-cmp' }
   use { 'nvim-lua/plenary.nvim' }
 
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
   use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
--- Super fast git decorations implemented purely in lua/teal.
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim', tag = 'release' } } -- tag = 'release' -- To use the latest release
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
--- Simple status line component that shows context of the current cursor position in file
+  -- Alternative git decorator -  DONT USE BOTH
+  -- use({ 'tanvirtin/vgit.nvim', event = 'BufWinEnter', requires = { 'nvim-lua/plenary.nvim' } })
+  use({ 'tanvirtin/vgit.nvim', requires = { 'nvim-lua/plenary.nvim' } })
+  -- Alternative git decorator -  DONT USE BOTH
+  -- Super fast git decorations implemented purely in lua/teal.
+  -- use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' } -- tag = 'release' -- To use the latest release
+
+  -- Simple status line component that shows context of the current cursor position in file
   use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
 
   use {'kyazdani42/nvim-web-devicons' }

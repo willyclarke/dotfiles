@@ -27,8 +27,8 @@ vgit.setup({
         predict_hunk_signs = true,
         predict_hunk_throttle_ms = 300,
         predict_hunk_max_lines = 50000,
-        blame_line_throttle_ms = 150,
-        action_delay_ms = 300,
+        blame_line_throttle_ms = 250,
+        action_delay_ms = 500,
     },
     hls = vgit.themes.tokyonight,
     sign = {
@@ -54,7 +54,7 @@ vgit.setup({
             num_hl = nil,
             icon = nil,
             line_hl = nil,
-            text = '┃',
+            text = '+',
         },
         VGitSignRemove = {
             name = 'VGitSignRemove',
@@ -62,7 +62,7 @@ vgit.setup({
             num_hl = nil,
             icon = nil,
             line_hl = nil,
-            text = '┃',
+            text = '-',
         },
         VGitSignChange = {
             name = 'VGitSignChange',
@@ -70,7 +70,7 @@ vgit.setup({
             num_hl = nil,
             icon = nil,
             line_hl = nil,
-            text = '┃',
+            text = '@',
         },
     },
     render = {
