@@ -56,24 +56,24 @@ nnoremap("<leader>se", ":luafile $MYVIMRC<CR>")
 nnoremap("<leader>ve", ":vsplit $MYVIMRC<CR>")
 
 -- Save my buffer
-nnoremap("<leader>fs", ":w<CR>")
+-- nnoremap("<leader>fs", ":w<CR>")
 
 -- From Steve Losh youtube walkthrough : Close all other folds but the one I am
 -- on at the moment.
-nnoremap('<leader>z', 'zMzvzz')
+-- nnoremap('<leader>z', 'zMzvzz')
 nnoremap('<tab>', '%')
 
 -- Copy current absolute filename into register
-nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
+-- nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
 -- Yank file of which filename was already copied into register.
-nnoremap('<leader>yf', ':%y+<cr>')
+-- nnoremap('<leader>yf', ':%y+<cr>')
 
-nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
+-- nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
 nnoremap("<leader>mm", [[<cmd>make<CR>]])
 -- May add support for these later, since they look interresting ...
-nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
-nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
-nnoremap("<leader>t", ':vertical split<CR><C-w>l :terminal<CR>i')
+-- nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
+-- nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
+-- nnoremap("<leader>t", ':vertical split<CR><C-w>l :terminal<CR>i')
 
 --
 -- INSERT MODE REMAPPINGS --
@@ -85,8 +85,8 @@ inoremap('jk', '<esc>')
 -- DIY autoclosing
 inoremap('(;', '();<left><left>')
 inoremap('[;', '[];<left><left>')
-inoremap('(', '()<left>')
-inoremap('[', '[]<left>')
+-- inoremap('(', '()<left>')
+-- inoremap('[', '[]<left>')
 inoremap('{<cr>', '{<cr>}<esc>O')
 inoremap('(<cr>', '(<cr>)<esc>O')
 inoremap('[<cr>', '[<cr>]<esc>O')
