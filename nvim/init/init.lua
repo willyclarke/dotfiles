@@ -14,8 +14,8 @@ require('ww-telescope-config')
 require('ww-treesitter-config')
 require('ww-nvimcmp-config')
 require('ww-nvimlsp-config')
--- require('ww-gitsigns-config')
-require('ww-vgit-config') -- Alternative to gitsigns, dont use both.
+require('ww-gitsigns-config')
+-- require('ww-vgit-config') -- Alternative to gitsigns, dont use both.
 require('ww-nvim-gps-config')
 require('ww-lualine-config')
 require('ww-kommentary-config')
