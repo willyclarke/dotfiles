@@ -58,12 +58,6 @@ return require('packer').startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-
-  -- Alternative git decorator -  DONT USE BOTH
-  -- use({ 'tanvirtin/vgit.nvim', event = 'BufWinEnter', requires = { 'nvim-lua/plenary.nvim' } })
-  -- use({ 'tanvirtin/vgit.nvim', requires = { 'nvim-lua/plenary.nvim' } })
-  -- Alternative git decorator -  DONT USE BOTH
   -- Super fast git decorations implemented purely in lua/teal.
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' } -- tag = 'release' -- To use the latest release
 
@@ -75,6 +69,8 @@ return require('packer').startup(function(use)
 
   -- Neovim plugin to comment in and out text.
   use { 'b3nj5m1n/kommentary' }
+
+  use { 'akinsho/toggleterm.nvim' }
 
   use { 'folke/which-key.nvim' }
 

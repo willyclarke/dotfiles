@@ -9,7 +9,6 @@ require('keymaps')
 require('settings')
 
 -- Configure the various plugins
-require('ww-neogit-config')
 require('ww-telescope-config')
 require('ww-treesitter-config')
 require('ww-nvimcmp-config')
@@ -19,6 +18,7 @@ require('ww-gitsigns-config')
 require('ww-nvim-gps-config')
 require('ww-lualine-config')
 require('ww-kommentary-config')
+require('ww-toggleterm-config')
 require('ww-which-key-config')
 -- require('ww-statusline') -- My take on a status line
 
