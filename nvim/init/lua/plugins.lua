@@ -76,6 +76,8 @@ return require('packer').startup(function(use)
 -- Neovim plugin to comment in and out text.
   use { 'b3nj5m1n/kommentary' }
 
+  use { 'folke/which-key.nvim' }
+
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
