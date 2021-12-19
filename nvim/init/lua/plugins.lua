@@ -73,7 +73,7 @@ return require('packer').startup(function(use)
   use {'kyazdani42/nvim-web-devicons' }
   use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
 
--- Neovim plugin to comment in and out text.
+  -- Neovim plugin to comment in and out text.
   use { 'b3nj5m1n/kommentary' }
 
   use { 'folke/which-key.nvim' }
