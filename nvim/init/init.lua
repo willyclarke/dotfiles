@@ -17,6 +17,7 @@ require('ww-gitsigns-config')
 require('ww-nvim-gps-config')
 require('ww-lualine-config')
 require('ww-kommentary-config')
+require('ww-nvim-tree')
 require('ww-toggleterm-config')
 require('ww-which-key-config')
 -- require('ww-statusline') -- My take on a status line

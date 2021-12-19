@@ -47,6 +47,9 @@ return require('packer').startup(function(use)
   use "nvim-lua/popup.nvim"                   -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim"                 -- Useful lua functions used ny lots of plugins
 
+  use {'kyazdani42/nvim-web-devicons' }
+  use { 'kyazdani42/nvim-tree.lua' }
+
   -- Language server and autocompletion plugins
   use { 'neovim/nvim-lspconfig' }
   use { 'hrsh7th/cmp-nvim-lsp' }
@@ -64,7 +67,6 @@ return require('packer').startup(function(use)
   -- Simple status line component that shows context of the current cursor position in file
   use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
 
-  use {'kyazdani42/nvim-web-devicons' }
   use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
 
   -- Neovim plugin to comment in and out text.
