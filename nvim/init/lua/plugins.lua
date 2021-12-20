@@ -51,12 +51,16 @@ return require('packer').startup(function(use)
   use { 'kyazdani42/nvim-tree.lua' }
 
   -- Language server and autocompletion plugins
-  use { 'neovim/nvim-lspconfig' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
-  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+
+  -- Language Server Protocol
+  use { 'neovim/nvim-lspconfig' }
+  use { 'williamboman/nvim-lsp-installer' } -- simple to use language server installer
+  use { 'tamago324/nlsp-settings.nvim'  }   -- language server settings defined in json for
 
   use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -70,7 +74,7 @@ return require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
 
   -- Neovim plugin to comment in and out text.
-  use { 'b3nj5m1n/kommentary' }
+  -- use { 'b3nj5m1n/kommentary' }
 
   use { 'akinsho/toggleterm.nvim' }
 

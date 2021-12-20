@@ -9,7 +9,7 @@ local tnoremap = Utils.tnoremap
 local nmap = Utils.tnoremap
 
 --Remap space as leader key
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -20,10 +20,6 @@ vim.g.maplocalleader = ' '
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
--- Add " around words. FIXME: I really wanted this to use the ''' symbol
-nnoremap('<leader>11', 'viw<esc>a\"<esc>hbi\"<esc>lel')
--- Add ' around words' FIXME: I really wanted this to use the '"' symbol.
-nnoremap('<leader>12', 'viw<esc>a\'<esc>hbi\'<esc>lel')
 -- Move a line downwards
 nnoremap('-', 'ddp')
 nnoremap('<C-j>', ':m .+1<CR>==')
@@ -83,17 +79,17 @@ inoremap('jk', '<esc>')
 -- Disable the <esc> key in insert mode for now ..."
 -- inoremap <esc> <nop>
 -- DIY autoclosing
-inoremap('(;', '();<left><left>')
-inoremap('[;', '[];<left><left>')
+-- inoremap('(;', '();<left><left>')
+-- inoremap('[;', '[];<left><left>')
 -- inoremap('(', '()<left>')
 -- inoremap('[', '[]<left>')
-inoremap('{<cr>', '{<cr>}<esc>O')
-inoremap('(<cr>', '(<cr>)<esc>O')
-inoremap('[<cr>', '[<cr>]<esc>O')
-inoremap('"', '""<left>')
-inoremap('\'', '\'\'<left>')
-inoremap('`', '``<left>')
-inoremap('```', '```<cr>```<esc>O')
+-- inoremap('{<cr>', '{<cr>}<esc>O')
+-- inoremap('(<cr>', '(<cr>)<esc>O')
+-- inoremap('[<cr>', '[<cr>]<esc>O')
+-- inoremap('"', '""<left>')
+-- inoremap('\'', '\'\'<left>')
+-- inoremap('`', '``<left>')
+-- inoremap('```', '```<cr>```<esc>O')
 -- Jump over the doubled up chars above you can use Ctrl-l
 inoremap('<c-l>', '<right>')
 -- Move a line downwards
