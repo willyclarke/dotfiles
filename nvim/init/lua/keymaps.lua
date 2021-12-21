@@ -9,7 +9,7 @@ local tnoremap = Utils.tnoremap
 local nmap = Utils.tnoremap
 
 --Remap space as leader key
--- vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -94,6 +94,7 @@ inoremap('jk', '<esc>')
 inoremap('<c-l>', '<right>')
 -- Move a line downwards
 inoremap('<C-j>', '<Esc>:m .+1<CR>==gi')
+-- inoremap('<tab>', '%' )
 -- Move a line upwards in insert mode
 -- inoremap('<C-k>', '<Esc>:m .-2<CR>==gi') -- This one disables vim's ability to do digraphs.
 
