@@ -82,6 +82,11 @@ highlight lCursor guifg=#000000 guibg=#00ffff guisp=#00ffff gui=NONE ctermfg=NON
 highlight ColorColumn guisp=#9c4343 guifg=NONE guibg=#202020 gui=NONE ctermbg=131 cterm=NONE
 highlight CursorLineNr guisp=NONE guifg=#90ee90 guibg=NONE gui=NONE ctermfg=120 cterm=NONE
 
+" These are needed to get the Language Server Protocol Highlights working.
+highlight LspReferenceText guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LspReferenceRead  guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LspReferenceWrite guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+
 " }}}"
 catch /^Vim\%((\a\+)\)\=:E185/
     " no plugins available
