@@ -20,7 +20,6 @@ require('ww-lualine-config')
 require('ww-nvim-tree')
 require('ww-toggleterm-config')
 require('ww-which-key-config')
--- require('ww-statusline') -- My take on a status line
 
 -- Reuse some of my older files - create a Lua config for this ?
 vim.cmd([[source ~/.config/nvim/vim/abbreviations.vim]])
