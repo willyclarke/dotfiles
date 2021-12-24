@@ -9,6 +9,7 @@ require('keymaps')
 require('settings')
 
 -- Configure the various plugins
+require('ww-nvim-autopairs-config')
 require('ww-telescope-config')
 require('ww-treesitter-config')
 require('ww-nvimcmp-config')
@@ -19,7 +20,6 @@ require('user.lsp') -- Copied from ChrisAtMachine
 require('ww-gitsigns-config')
 require('ww-nvim-gps-config')
 require('ww-lualine-config')
--- require('ww-kommentary-config')
 require('ww-nvim-tree')
 require('ww-toggleterm-config')
 require('ww-which-key-config')
