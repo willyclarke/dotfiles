@@ -13,7 +13,6 @@ require('ww-nvim-autopairs-config')
 require('ww-telescope-config')
 require('ww-treesitter-config')
 require('ww-nvimcmp-config')
--- require('ww-nvimlsp-config')
 require('user.lsp') -- Copied from ChrisAtMachine
 require('ww-gitsigns-config')
 require('ww-nvim-gps-config')
