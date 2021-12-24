@@ -15,8 +15,6 @@ require('ww-treesitter-config')
 require('ww-nvimcmp-config')
 -- require('ww-nvimlsp-config')
 require('user.lsp') -- Copied from ChrisAtMachine
--- require('ww-nvim-lsp-installer-config')
--- require('ww-nlsp-settings-nvim-config')
 require('ww-gitsigns-config')
 require('ww-nvim-gps-config')
 require('ww-lualine-config')
