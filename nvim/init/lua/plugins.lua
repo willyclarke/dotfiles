@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'saadparwaiz1/cmp_luasnip' }                        -- snippet completions
 
-  -- snippets
+  -- Snippets
   use { 'L3MON4D3/LuaSnip' }                                -- snippet engine
   use { 'rafamadriz/friendly-snippets' }                    -- a bunch of snippets to use
 
@@ -71,10 +71,12 @@ return require('packer').startup(function(use)
   use { 'williamboman/nvim-lsp-installer' } -- simple to use language server installer
   use { 'tamago324/nlsp-settings.nvim'  }   -- language server settings defined in json for
 
+  -- Telescope
   use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
+  -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-  -- Super fast git decorations implemented purely in lua/teal.
+  -- GIT - Super fast git decorations implemented purely in lua/teal.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } , tag = 'release' } -- To use the latest release
 
   -- Simple status line component that shows context of the current cursor position in file
