@@ -3,6 +3,17 @@ if not status_ok then
   return
 end
 
+local utils_status_ok, Utils = pcall(require, "utils")
+if not utils_status_ok then
+  print('ww-bufferline-config: Could not load utils')
+else
+local nnoremap = Utils.nnoremap
+  -- These commands will navigate through buffers in order regardless of which mode you are using
+  -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
+  nnoremap('[b', ':BufferLineCycleNext<CR>')
+  nnoremap('b]', ':BufferLineCyclePrev<CR>')
+end
+
 bufferline.setup {
   options = {
     numbers = "both", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
@@ -34,7 +45,7 @@ bufferline.setup {
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | "nvim_lsp" | "coc",
+    diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
     --   return "("..count..")"
