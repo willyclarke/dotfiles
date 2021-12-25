@@ -53,6 +53,7 @@ return require('packer').startup(function(use)
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'kyazdani42/nvim-tree.lua' }
   use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'p00f/nvim-ts-rainbow' }
 
   -- Language server and autocompletion plugins
   use { 'hrsh7th/nvim-cmp' }
@@ -73,6 +74,7 @@ return require('packer').startup(function(use)
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' }
+
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
