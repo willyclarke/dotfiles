@@ -42,7 +42,7 @@ highlight PMenuSel guisp=#a0cf63 guifg=#000000 guibg=#a0cf63 gui=NONE ctermfg=16
 highlight Search guisp=#ffff45 guifg=#000000 guibg=#ffff45 gui=NONE ctermfg=16 ctermbg=227 cterm=NONE
 highlight Delimiter guisp=NONE guifg=#ffa500 guibg=NONE gui=NONE ctermfg=214 cterm=NONE
 highlight Statement guisp=NONE guifg=#f5f55d guibg=NONE gui=bold ctermfg=227 cterm=bold
-highlight Comment guisp=NONE guifg=#7cbdd6 guibg=NONE gui=NONE ctermfg=74 cterm=NONE
+highlight Comment guisp=NONE guifg=#8e9396 guibg=NONE gui=NONE ctermfg=74 cterm=NONE
 highlight Character guisp=NONE guifg=#ffa0a0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
 highlight Number guisp=NONE guifg=#8f8ffe guibg=NONE gui=bold ctermfg=204 cterm=bold
 highlight Boolean guisp=NONE guifg=#ffa0a0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
@@ -71,7 +71,7 @@ highlight PMenu guisp=#404040 guifg=#eeeeee guibg=#404040 gui=NONE ctermfg=255 c
 highlight SpecialKey guisp=NONE guifg=#191919 guibg=NONE gui=NONE ctermfg=235 cterm=NONE
 highlight Constant guisp=NONE guifg=#ffcfa0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
 highlight Tag guisp=NONE guifg=#ffa500 guibg=NONE gui=NONE ctermfg=214 cterm=NONE
-highlight String guisp=NONE guifg=#ed8aa9 guibg=NONE gui=NONE ctermfg=211 cterm=NONE
+highlight String guisp=NONE guifg=#ffbb33 guibg=NONE gui=NONE ctermfg=211 cterm=NONE
 highlight PMenuThumb guisp=#a8a8a8 guifg=#b2b2b2 guibg=#a8a8a8 gui=NONE ctermfg=249 ctermbg=248 cterm=NONE
 highlight MatchParen guisp=#008b8b guifg=NONE guibg=#008b8b gui=NONE ctermbg=30 cterm=NONE
 highlight Repeat guisp=NONE guifg=#f5f55d guibg=NONE gui=bold ctermfg=227 cterm=bold
