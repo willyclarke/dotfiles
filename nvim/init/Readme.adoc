@@ -2,6 +2,10 @@
 
 This is a neovim configuration mostly based on lua. There are still a couple
 of vim files in transition to lua.
+The files in the neovim directory is heavily inspired from Chris@machine. Use his
+Lunar VIM repo for setting up a fully functional neovim configuration.
+
+'https://github.com/LunarVim/Neovim-from-scratch.git'
 
 The plugin manager used for these files is called 'packer'.
 

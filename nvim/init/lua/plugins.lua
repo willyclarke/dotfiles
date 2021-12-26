@@ -40,8 +40,6 @@ packer.init {
 
 -- -- -- --
 
-print(install_path)
-
 return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }                 -- Have packer manage itself
   use { 'nvim-lua/popup.nvim' }                    -- An implementation of the Popup API from vim in Neovim

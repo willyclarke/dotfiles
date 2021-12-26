@@ -38,3 +38,11 @@ project.setup {
   -- telescope
   datapath = vim.fn.stdpath("data"),
 }
+
+local telescope_status_ok, telescope = pcall(require, 'telescope')
+if not telescope_status_ok then
+  print('ww-project-config: The telescope plugin is not loaded.')
+else
+  telescope.load_extension('projects')
+  -- print('ww-project-config: TIP: use \'Telescope project\' to select projects')
+end
