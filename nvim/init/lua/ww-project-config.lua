@@ -38,5 +38,3 @@ project.setup {
   -- telescope
   datapath = vim.fn.stdpath("data"),
 }
-
-print('Project has been set up')
