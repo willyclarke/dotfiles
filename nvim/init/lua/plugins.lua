@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
   use { 'kyazdani42/nvim-tree.lua' }
   use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
   use { 'p00f/nvim-ts-rainbow' }
+  use { 'ahmedkhalf/project.nvim' }
 
   -- Language server and autocompletion plugins
   use { 'hrsh7th/nvim-cmp' }
