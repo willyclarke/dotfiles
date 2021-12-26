@@ -1,4 +1,9 @@
--- Code snippets have been pasted from:
+-- This neovim lua configuration is inspired/copied a lot from ChrisAtMachine.
+-- Kudos to him for teaching all this stuff.
+-- Take a look at his tutorials in Youtube and on
+-- https://github.com/LunarVim/Neovim-from-scratch.git
+--
+-- Some code snippets have also been pasted from:
 -- https://yashguptaz.hashnode.dev/configuring-neovim-05-with-lua-the-basics
 -- which is a tutorial on how to set up neovim with Lua
 --
