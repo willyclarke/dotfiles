@@ -55,7 +55,7 @@ function _G.preserve(cmd)
     vim.fn.winrestview(original_cursor)
 end
 
-function addZeroForLessThan10(number)
+function AddZeroForLessThan10(number)
   if(number < 10) then
     return 0 .. number
   else
@@ -63,12 +63,14 @@ function addZeroForLessThan10(number)
  end
 end
 
-function generateDateTime()
+function GenerateDateTime()
  local dateTimeTable = os.date('*t')
- local dateTime = dateTimeTable.year .. addZeroForLessThan10(dateTimeTable.month) ..
- addZeroForLessThan10(dateTimeTable.day) .. addZeroForLessThan10(dateTimeTable.hour) .. addZeroForLessThan10(dateTimeTable.min) .. addZeroForLessThan10(dateTimeTable.sec)
+ local dateTime = dateTimeTable.year .. AddZeroForLessThan10(dateTimeTable.month) ..
+ AddZeroForLessThan10(dateTimeTable.day) .. AddZeroForLessThan10(dateTimeTable.hour) .. AddZeroForLessThan10(dateTimeTable.min) .. AddZeroForLessThan10(dateTimeTable.sec)
  return dateTime
 end
+
+local custom_backup_dir = '~/.vim_custom_backups'
 
 --[[ " Use git to backup everything that I edit {{{
  https://www.reddit.com/r/vim/comments/8w3udw/topnotch_vim_file_backup_history_with_no_plugins/
@@ -79,7 +81,6 @@ end
  NOTE: This has been converted to lua from vim code by me : Willy Clarke.
 ]]
 function _G.backupcurrentfile()
-  local custom_backup_dir = '~/.vim_custom_backups'
   local gitcmd = ''
 
   if (vim.fn.isdirectory(vim.fn.expand(custom_backup_dir)) == 1) then
@@ -116,12 +117,33 @@ function _G.backupcurrentfile()
   gitcmd = gitcmd .. 'cp ' .. file .. ' ' .. backup_file .. ';'
   gitcmd = gitcmd .. 'cd ' .. custom_backup_dir .. ';'
   gitcmd = gitcmd .. 'git add ' .. backup_file .. ';'
-  gitcmd = gitcmd .. 'git commit -m \"Backup - ' .. generateDateTime() .. ' :: ' .. file .. '\";'
+  gitcmd = gitcmd .. 'git commit -m \"Backup - ' .. GenerateDateTime() .. ' :: ' .. file .. '\";'
   -- print(gitcmd)
   vim.fn.jobstart(gitcmd)
 
 end
 
+-- Return the name of the backup file
+function _G.getcurrentbackupfile()
+  local file = vim.fn.expand('%:p')
+  local test = vim.fn.fnamemodify(custom_backup_dir, ':t')
+
+  -- Check regex to figure out if the filename is invalid.
+  if (file == test) then
+    print('--backupcurrentfile: Will not save to invalid file name ' .. custom_backup_dir)
+    return
+  end
+
+  -- print('The file name is ' .. file)
+  -- print('The test is ' .. test)
+
+  local file_dir = custom_backup_dir .. vim.fn.expand('%:p:h')
+  -- print('The file_dir is ' .. file_dir)
+  local backup_file = custom_backup_dir .. file
+  -- print('The backup_file is ' .. backup_file)
+  local edit_cmd = 'vsplit ' .. backup_file
+  vim.api.nvim_command(edit_cmd)
+end
 
 -- so we add the module to the _G global variable.
 _G.utils = M
