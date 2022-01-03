@@ -47,8 +47,8 @@ nnoremap('<cr>', ':noh<CR><CR>:<backspace>')
 nnoremap("<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 
 -- Make it easier to edit the init.lua file
-nnoremap("<leader>se", ":luafile $MYVIMRC<CR>")
-nnoremap("<leader>ve", ":vsplit $MYVIMRC<CR>")
+-- nnoremap("<leader>se", ":luafile $MYVIMRC<CR>")
+-- nnoremap("<leader>ve", ":vsplit $MYVIMRC<CR>")
 
 -- Save my buffer
 -- nnoremap("<leader>fs", ":w<CR>")

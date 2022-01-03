@@ -169,6 +169,13 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
+
+  v = {
+    name = "VIMRC/Backup",
+    b = { "<cmd>lua getcurrentbackupfile()<cr>", "Edit backed up file"},
+    e = { "<cmd>vsplit $MYVIMRC<cr>", "Edit init.lua"},
+    s = { "<cmd>luafile $MYVIMRC<cr>", "Source init.lua"}
+  },
 }
 
 which_key.setup(setup)
