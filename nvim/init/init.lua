@@ -32,3 +32,5 @@ require('ww-project-config')
 vim.cmd([[source ~/.config/nvim/vim/abbreviations.vim]])
 vim.cmd([[source ~/.config/nvim/vim/colorscheme.vim]])
 vim.cmd([[source ~/.config/nvim/vim/ww-word-highlight.vim]])
+
+print('Sourced the init.lua file ... ' .. GenerateDateTime())
