@@ -80,6 +80,9 @@ return require('packer').startup(function(use)
   -- GIT - Super fast git decorations implemented purely in lua/teal.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } , tag = 'release' } -- To use the latest release
 
+  -- A work-in-progress Magit clone for Neovim that is geared toward the Vim philosophy.
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
   -- Simple status line component that shows context of the current cursor position in file
   use { "SmiteshP/nvim-gps", requires = "nvim-treesitter/nvim-treesitter" }
 
