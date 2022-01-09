@@ -27,6 +27,7 @@ require('ww-toggleterm-config')
 require('ww-which-key-config')
 require('ww-bufferline-config')
 require('ww-project-config')
+require('ww-null-ls-config')
 
 -- Reuse some of my older files - create a Lua config for this ?
 vim.cmd([[source ~/.config/nvim/vim/abbreviations.vim]])
