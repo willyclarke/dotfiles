@@ -64,7 +64,7 @@ nnoremap('<tab>', '%')
 -- nnoremap('<leader>yf', ':%y+<cr>')
 
 -- nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
-nnoremap("<leader>mm", [[<cmd>make<CR>]])
+nnoremap("<leader>mm", [[<cmd>YabsTask build<CR>]])
 -- May add support for these later, since they look interresting ...
 -- nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
 -- nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
