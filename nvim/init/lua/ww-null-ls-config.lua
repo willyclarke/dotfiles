@@ -17,4 +17,3 @@ null_ls.setup({
 		completion.spell,
 	},
 })
-print("Set up null_ls config")
