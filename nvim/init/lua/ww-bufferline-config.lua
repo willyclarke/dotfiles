@@ -10,8 +10,8 @@ else
 local nnoremap = Utils.nnoremap
   -- These commands will navigate through buffers in order regardless of which mode you are using
   -- e.g. if you change the order of buffers :bnext and :bprevious will not respect the custom ordering
-  nnoremap('[b', ':BufferLineCycleNext<CR>')
-  nnoremap('b]', ':BufferLineCyclePrev<CR>')
+  nnoremap('b]', ':BufferLineCycleNext<CR>')
+  nnoremap('b[', ':BufferLineCyclePrev<CR>')
 end
 
 bufferline.setup {
