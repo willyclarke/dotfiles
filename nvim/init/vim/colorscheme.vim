@@ -1,28 +1,6 @@
 
 " Theme setup {{{
 try
-   "colorscheme dracula
-   "colorscheme kalisi
-   "colorscheme termschool
-   "colorscheme default              " Sometimes you want just plain vanilla....
-   "colorscheme night-owl
-   "colorscheme onedark
-   "colorscheme papercolor
-   "colorscheme solarized8_light
-   "let g:falcon_background = 0
-   "let g:falcon_inactive = 1
-   "colorscheme falcon                " provides some features unique to neovim
-" Set up my own colorscheme {{{
-" Vim color file - duoduo
-" Maintainer:	Yggdroot <archofortune@gmail.com>
-
-if version > 580
-	hi clear
-	if exists("syntax_on")
-		syntax reset
-	endif
-endif
-
 set background=dark
 " in case t_Co alone doesn't work, add this as well:
 "let &t_AB="\e[48;5;%dm"
@@ -55,14 +33,16 @@ highlight Conditional guisp=NONE guifg=#f5f55d guibg=NONE gui=bold ctermfg=227 c
 highlight StorageClass guisp=NONE guifg=#deb887 guibg=NONE gui=bold ctermfg=180 cterm=bold
 highlight Todo guisp=#ffff17 guifg=#0000ff guibg=#ffff17 gui=NONE ctermfg=21 ctermbg=226 cterm=NONE
 highlight Special guisp=NONE guifg=#ffa500 guibg=NONE gui=NONE ctermfg=214 cterm=NONE
-highlight LineNr guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LineNr guisp=#2e2e2e guifg=#aaef00 guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LineNrAbove guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LineNrBelow guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
 highlight StatusLine guisp=#4d4d4d guifg=#87ceeb guibg=#4d4d4d gui=NONE ctermfg=117 ctermbg=239 cterm=NONE
 highlight Label guisp=NONE guifg=#f5f55d guibg=NONE gui=NONE ctermfg=227 cterm=NONE
 highlight PMenuSel guisp=#a0cf63 guifg=#000000 guibg=#a0cf63 gui=NONE ctermfg=16 ctermbg=149 cterm=NONE
 highlight Search guisp=#ffff45 guifg=#000000 guibg=#ffff45 gui=NONE ctermfg=16 ctermbg=227 cterm=NONE
 highlight Delimiter guisp=NONE guifg=#ffa500 guibg=NONE gui=NONE ctermfg=214 cterm=NONE
 highlight Statement guisp=NONE guifg=#f5f55d guibg=NONE gui=bold ctermfg=227 cterm=bold
-highlight Comment guisp=NONE guifg=#7cbdd6 guibg=NONE gui=NONE ctermfg=74 cterm=NONE
+highlight Comment guisp=NONE guifg=#8e9396 guibg=NONE gui=NONE ctermfg=74 cterm=NONE
 highlight Character guisp=NONE guifg=#ffa0a0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
 highlight Number guisp=NONE guifg=#8f8ffe guibg=NONE gui=bold ctermfg=204 cterm=bold
 highlight Boolean guisp=NONE guifg=#ffa0a0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
@@ -91,7 +71,7 @@ highlight PMenu guisp=#404040 guifg=#eeeeee guibg=#404040 gui=NONE ctermfg=255 c
 highlight SpecialKey guisp=NONE guifg=#191919 guibg=NONE gui=NONE ctermfg=235 cterm=NONE
 highlight Constant guisp=NONE guifg=#ffcfa0 guibg=NONE gui=NONE ctermfg=217 cterm=NONE
 highlight Tag guisp=NONE guifg=#ffa500 guibg=NONE gui=NONE ctermfg=214 cterm=NONE
-highlight String guisp=NONE guifg=#ed8aa9 guibg=NONE gui=NONE ctermfg=211 cterm=NONE
+highlight String guisp=NONE guifg=#ffbb33 guibg=NONE gui=NONE ctermfg=211 cterm=NONE
 highlight PMenuThumb guisp=#a8a8a8 guifg=#b2b2b2 guibg=#a8a8a8 gui=NONE ctermfg=249 ctermbg=248 cterm=NONE
 highlight MatchParen guisp=#008b8b guifg=NONE guibg=#008b8b gui=NONE ctermbg=30 cterm=NONE
 highlight Repeat guisp=NONE guifg=#f5f55d guibg=NONE gui=bold ctermfg=227 cterm=bold
@@ -104,13 +84,20 @@ highlight lCursor guifg=#000000 guibg=#00ffff guisp=#00ffff gui=NONE ctermfg=NON
 highlight ColorColumn guisp=#9c4343 guifg=NONE guibg=#202020 gui=NONE ctermbg=131 cterm=NONE
 highlight CursorLineNr guisp=NONE guifg=#90ee90 guibg=NONE gui=NONE ctermfg=120 cterm=NONE
 
-set background=dark
+highlight Tabline guisp=#4d4d4d guifg=#87cfeb guibg=#4d4d4d gui=NONE ctermfg=117 ctermbg=239 cterm=NONE
+highlight TablineSel guisp=NONE guifg=#ed8aa9 guibg=NONE gui=NONE ctermfg=211 cterm=NONE
+highlight TablineFill guisp=NONE guifg=#ed8aa9 guibg=NONE gui=NONE ctermfg=211 cterm=NONE
+
+" These are needed to get the Language Server Protocol Highlights working.
+highlight LspReferenceText guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LspReferenceRead  guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+highlight LspReferenceWrite guisp=#2e2e2e guifg=#9b9c9a guibg=#2e2e2e gui=NONE ctermfg=249 ctermbg=236 cterm=NONE
+
 " }}}"
 catch /^Vim\%((\a\+)\)\=:E185/
     " no plugins available
     colorscheme default
 endtry
-"set background=dark
 hi ColorColumn ctermbg=darkgrey guibg=black
 " fix background color behaviour
 hi Normal ctermbg=NONE
