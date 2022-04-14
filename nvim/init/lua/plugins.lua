@@ -111,7 +111,14 @@ return require("packer").startup(function(use)
 	-- Code formatting plugin
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
+  -- Async make
 	use({ "pianocomposer321/yabs.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
+  -- Better quickfix window
+  use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+
+  -- optional - Fuzzy finder
+  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
