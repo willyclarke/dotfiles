@@ -29,10 +29,15 @@ require('ww-bufferline-config')
 require('ww-project-config')
 require('ww-null-ls-config')
 require('ww-pianocomposer321-config')
+require('config/colorscheme/init')                             -- Colorscheme library.
+-- require('config/colorscheme/ww-colorscheme-monokay')           -- Set up the actual color scheme.
+-- require('config/colorscheme/ww-colorscheme-everforest')           -- Set up the actual color scheme.
+-- require('config/colorscheme/ww-colorscheme-google-light')           -- Set up the actual color scheme.
+require('config/colorscheme/ww-colorscheme-neovim')           -- Set up the actual color scheme.
 
 -- Reuse some of my older files - create a Lua config for this ?
 vim.cmd([[source ~/.config/nvim/vim/abbreviations.vim]])
-vim.cmd([[source ~/.config/nvim/vim/colorscheme.vim]])
+-- vim.cmd([[source ~/.config/nvim/vim/colorscheme.vim]])
 vim.cmd([[source ~/.config/nvim/vim/ww-word-highlight.vim]])
 
 print('Sourced the init.lua file ... ' .. GenerateDateTime())

@@ -54,7 +54,13 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "kyazdani42/nvim-tree.lua" })
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icons
+		},
+		tag = "nightly", -- optional, updated every week. (see issue #1193)
+	})
 	use({ "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons" })
 	use({ "p00f/nvim-ts-rainbow" })
 	use({ "ahmedkhalf/project.nvim" })
@@ -111,14 +117,27 @@ return require("packer").startup(function(use)
 	-- Code formatting plugin
 	use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
-  -- Async make
+	-- Async make
 	use({ "pianocomposer321/yabs.nvim", requires = { "nvim-lua/plenary.nvim" } })
 
-  -- Better quickfix window
-  use {'kevinhwang91/nvim-bqf', ft = 'qf'}
+	-- Better quickfix window
+	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 
-  -- optional - Fuzzy finder
-  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
+	-- optional - Fuzzy finder
+	use({
+		"junegunn/fzf",
+		run = function()
+			vim.fn["fzf#install"]()
+		end,
+	})
+
+	use({
+		"norcalli/nvim-colorizer.lua",
+		cmd = "ColorizerToggle",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

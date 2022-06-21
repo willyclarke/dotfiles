@@ -130,9 +130,9 @@ cmp.setup({
     select = false,
   },
 
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
+  -- documentation = {
+  --   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  -- },
 
   experimental = {
     ghost_text = false,
