@@ -1,7 +1,7 @@
 vim.g.colors_name = "ww-neovim"
 
 require("config.colorscheme").setup {
-  base00 = "#111111", -- Default background
+  base00 = "#16161D", -- Default background #16161D is called eigengrau and is kinda-ish the color your see when you
   base01 = "#222222", -- Lighter background, tabs
   base02 = "#555555", -- Selection background
   base03 = "#afafaf", -- Comments
