@@ -19,6 +19,11 @@ if not status_ok_project_config then
   return
 end
 
+local all_ok = pc and wk and utils
+if all_ok and false then
+  print('Loaded all the plugins that was requested')
+end
+
 vim.api.nvim_set_hl(0, "NavicIconsFile",          {default = true, bg = "#000000", fg = "#ffffff"})
 vim.api.nvim_set_hl(0, "NavicIconsModule",        {default = true, bg = "#000000", fg = "#ffffff"})
 vim.api.nvim_set_hl(0, "NavicIconsNamespace",     {default = true, bg = "#000000", fg = "#ffffff"})

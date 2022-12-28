@@ -57,6 +57,11 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('neogit').setup{}
+    end
+  }
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
@@ -326,7 +331,6 @@ local on_attach = function(client, bufnr)
   -- many times.
   --
   navic.attach(client, bufnr)
-  print('attaching the NAVIC client')
 
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
