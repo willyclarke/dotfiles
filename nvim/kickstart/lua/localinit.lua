@@ -10,7 +10,8 @@ if not status_ok_which_key then
   return
 end
 
--- vim.cmd([[source ~/.config/nvim/vim/ww-word-highlight.vim]])
+vim.cmd([[source ~/.config/nvim/vim/ww-word-highlight.vim]])
+vim.cmd([[source ~/.config/nvim/vim/abbreviations.vim]])
 
 local status_ok_project_config, pc = pcall(require, 'ww-project-config')
 if not status_ok_project_config then
