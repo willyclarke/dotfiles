@@ -1,4 +1,3 @@
-print('hello after init lua')
 local status_ok, utils = pcall(require, 'utils')
 if not status_ok then
   print('localinit: Could not load utils plugin. Will return.')
@@ -11,7 +10,7 @@ if not status_ok_which_key then
   return
 end
 
-vim.cmd([[source ~/.config/nvim/vim/ww-word-highlight.vim]])
+-- vim.cmd([[source ~/.config/nvim/vim/ww-word-highlight.vim]])
 
 local status_ok_project_config, pc = pcall(require, 'ww-project-config')
 if not status_ok_project_config then
