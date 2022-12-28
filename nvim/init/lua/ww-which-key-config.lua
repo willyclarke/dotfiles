@@ -79,7 +79,7 @@ local opts = {
 }
 
 local mappings = {
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+  ["x"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
@@ -120,7 +120,7 @@ local mappings = {
       "Undo Stage Hunk",
     },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+    B = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
@@ -135,6 +135,7 @@ local mappings = {
     d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
     D = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Defintion" },
     e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Line diagnostics" },
+    E = { "<cmd>lua vim.diagnostic.open_float<cr>", "Float diagnostics" },
     f = { "<cmd>lua vim.lsp.buf.format{async = true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
@@ -173,9 +174,9 @@ local mappings = {
 
   v = {
     name = "VIMRC/Backup",
-    b = { "<cmd>lua getcurrentbackupfile()<cr>", "Edit backed up file"},
-    e = { "<cmd>vsplit $MYVIMRC<cr>", "Edit init.lua"},
-    s = { "<cmd>luafile $MYVIMRC<cr>", "Source init.lua"}
+    b = { "<cmd>lua getcurrentbackupfile()<cr>", "Edit backed up file" },
+    e = { "<cmd>vsplit $MYVIMRC<cr>", "Edit init.lua" },
+    s = { "<cmd>luafile $MYVIMRC<cr>", "Source init.lua" }
   },
 }
 
