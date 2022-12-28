@@ -135,7 +135,7 @@ local mappings = {
     d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
     D = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Defintion" },
     e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Line diagnostics" },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format{async = true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next Diagnostic" },
