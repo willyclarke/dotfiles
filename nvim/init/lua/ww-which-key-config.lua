@@ -105,6 +105,11 @@ local mappings = {
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
 
+  m = {
+    name = "Make",
+    m = { "<cmd>make<cr><cr><cmd>copen<cr>", "Make" },
+  },
+
   g = {
     name = "Git",
     b = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
