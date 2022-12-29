@@ -4,6 +4,12 @@ if not status_ok then
   return
 end
 
+local status_ok_settings, settings = pcall(require, 'settings')
+if not status_ok_settings then
+  print('localinit: Could not load settings plugin. Will return.')
+  return
+end
+
 local status_ok_which_key, wk = pcall(require, 'ww-which-key-config')
 if not status_ok_which_key then
   print('localinit: Could not load which key config')
@@ -19,7 +25,7 @@ if not status_ok_project_config then
   return
 end
 
-local all_ok = pc and wk and utils
+local all_ok = pc and wk and utils and settings
 if all_ok and false then
   print('Loaded all the plugins that was requested')
 end
