@@ -36,11 +36,6 @@ require('packer').startup(function(use)
     }
 
 
-    use { -- Autocompletion
-        'hrsh7th/nvim-cmp',
-        requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-    }
-
     use { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
         run = function()
@@ -63,11 +58,14 @@ require('packer').startup(function(use)
         end
     }
 
-    use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-    use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+    use 'navarasu/onedark.nvim'      -- Theme inspired by Atom
+    use {
+        'nvim-lualine/lualine.nvim', -- Fancier statusline
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-    use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-    use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+    use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
+    use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
 
     -- Fuzzy Finder (files, lsp, etc)
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -94,7 +92,7 @@ require('packer').startup(function(use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+        tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
     }
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
@@ -219,11 +217,101 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help lualine.txt`
 require('lualine').setup {
     options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
+        icons_enabled = true,
+        theme = 'auto',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+        }
     },
+    sections = {
+        lualine_a = {
+            {
+                'mode'
+            },
+            {
+                'buffers',
+                show_filename_only = true,       -- Shows shortened relative path when set to false.
+                hide_filename_extension = false, -- Hide filename extension when set to true.
+                show_modified_status = true,     -- Shows indicator when the buffer is modified.
+                mode = 3,                        -- 0: Shows buffer name
+                -- 1: Shows buffer index
+                -- 2: Shows buffer name + buffer index
+                -- 3: Shows buffer number
+                -- 4: Shows buffer name + buffer number
+
+                max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
+                -- it can also be a function that returns
+                -- the value of `max_length` dynamically.
+
+                filetype_names = {
+                    TelescopePrompt = 'Telescope',
+                    dashboard = 'Dashboard',
+                    packer = 'Packer',
+                    fzf = 'FZF',
+                    alpha = 'Alpha'
+                },                        -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+                symbols = {
+                    modified = ' ●',    -- Text to show when the buffer is modified
+                    alternate_file = '#', -- Text to show to identify the alternate file
+                    directory = '',    -- Text to show when the buffer is a directory
+                },
+            }
+        },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = {
+            {
+                'filename',
+                file_status = true,    -- Displays file status (readonly status, modified status)
+                newfile_status = true, -- Display new file status (new file means no write after created)
+                path = 3,              -- 0: Just the filename
+                -- 1: Relative path
+                -- 2: Absolute path
+                -- 3: Absolute path, with tilde as the home directory
+
+                shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+                -- for other components. (terrible name, any suggestions?)
+                symbols = {
+                    modified = '[+]',      -- Text to show when the file is modified.
+                    readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+                    unnamed = '[No Name]', -- Text to show for unnamed buffers.
+                    newfile = '[New]',     -- Text to show for newly created file before first write
+                }
+            }
+        },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {
+        lualine_a = { 'buffers' },
+        lualine_b = { 'branch' },
+        lualine_c = { 'filename' },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'tabs' }
+    },
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {'quickfix'}
 }
 
 -- Enable Comment.nvim
@@ -254,8 +342,8 @@ require('telescope').setup {
     defaults = {
         mappings = {
             i = {
-                ['<C-u>'] = false,
-                ['<C-d>'] = false,
+                    ['<C-u>'] = false,
+                    ['<C-d>'] = false,
             },
         },
     },
@@ -304,41 +392,41 @@ require('nvim-treesitter.configs').setup {
             lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
                 -- You can use the capture groups defined in textobjects.scm
-                ['aa'] = '@parameter.outer',
-                ['ia'] = '@parameter.inner',
-                ['af'] = '@function.outer',
-                ['if'] = '@function.inner',
-                ['ac'] = '@class.outer',
-                ['ic'] = '@class.inner',
+                    ['aa'] = '@parameter.outer',
+                    ['ia'] = '@parameter.inner',
+                    ['af'] = '@function.outer',
+                    ['if'] = '@function.inner',
+                    ['ac'] = '@class.outer',
+                    ['ic'] = '@class.inner',
             },
         },
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-                [']m'] = '@function.outer',
-                [']]'] = '@class.outer',
+                    [']m'] = '@function.outer',
+                    [']]'] = '@class.outer',
             },
             goto_next_end = {
-                [']M'] = '@function.outer',
-                [']['] = '@class.outer',
+                    [']M'] = '@function.outer',
+                    [']['] = '@class.outer',
             },
             goto_previous_start = {
-                ['[m'] = '@function.outer',
-                ['[['] = '@class.outer',
+                    ['[m'] = '@function.outer',
+                    ['[['] = '@class.outer',
             },
             goto_previous_end = {
-                ['[M'] = '@function.outer',
-                ['[]'] = '@class.outer',
+                    ['[M'] = '@function.outer',
+                    ['[]'] = '@class.outer',
             },
         },
         swap = {
             enable = true,
             swap_next = {
-                ['<leader>a'] = '@parameter.inner',
+                    ['<leader>a'] = '@parameter.inner',
             },
             swap_previous = {
-                ['<leader>A'] = '@parameter.inner',
+                    ['<leader>A'] = '@parameter.inner',
             },
         },
     },
@@ -412,21 +500,17 @@ local servers = {
     -- rust_analyzer = {},
     -- tsserver = {},
 
-    sumneko_lua = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
-    },
+    -- sumneko_lua = {
+    --     Lua = {
+    --         workspace = { checkThirdParty = false },
+    --         telemetry = { enable = false },
+    --     },
+    -- },
 }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 --
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 
@@ -440,7 +524,6 @@ mason_lspconfig.setup {
 mason_lspconfig.setup_handlers {
     function(server_name)
         require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
             on_attach = on_attach,
             settings = servers[server_name],
         }
@@ -449,49 +532,6 @@ mason_lspconfig.setup_handlers {
 
 -- Turn on lsp status information
 require('fidget').setup()
-
--- nvim-cmp setup
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-
-cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-    },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    },
-}
 
 require('localinit')
 
