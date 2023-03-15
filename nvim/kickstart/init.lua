@@ -27,6 +27,19 @@ require('packer').startup(function(use)
         },
     }
 
+  -- Lua
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
     use { -- A minimal, stylish and customizable statusline / winbar for Neovim written in Lua.
         'feline-nvim/feline.nvim'
     }
@@ -94,6 +107,17 @@ require('packer').startup(function(use)
         },
         tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
     }
+
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+    },
+  }
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')

@@ -79,7 +79,16 @@ local opts = {
 }
 
 local mappings = {
-  ["x"] = { "<cmd>Alpha<cr>", "Alpha" },
+    x = {
+        name = "Trouble",
+        a = { "<cmd>Alpha<cr>", "Alpha" },
+        x = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+        w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble Workspace Diag" },
+        d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Trouble Document Diag" },
+        l = { "<cmd>TroubleToggle loclist<cr>", "Trouble Location List" },
+        q = { "<cmd>TroubleToggle quickfix<cr>", "Trouble Quickfix" },
+        gR = { "<cmd>TroubleToggle lsp_references<cr>", "Trouble LSP References" },
+    },
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
