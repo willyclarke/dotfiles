@@ -110,6 +110,7 @@ table.insert(components.active[1], {
 
 require('feline').setup()
 require('feline').winbar.setup({ components = components })
+require('alpha').setup(require 'alpha.themes.startify'.config)
 
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
