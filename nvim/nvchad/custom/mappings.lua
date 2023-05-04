@@ -23,6 +23,7 @@ M.abc = {
     ["<leader>gn"] = {":Neogit <CR>", "Neogit"},
     ["<leader>gr"] = {":Gitsigns reset_hunk<CR>", "reset hunk"},
     ["<leader>gs"] = {":Gitsigns stage_hunk<CR>", "stage hunk"},
+    ["<leader>mm"] = { ":make<CR>", "run the make", opts = { nowait = true } },
   },
 
   i = {
