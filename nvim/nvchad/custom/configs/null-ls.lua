@@ -17,6 +17,9 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+  -- gitsigns
+  b.code_actions.gitsigns,
 }
 
 null_ls.setup {
