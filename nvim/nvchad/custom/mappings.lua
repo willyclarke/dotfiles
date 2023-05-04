@@ -16,6 +16,13 @@ M.abc = {
     ["<C-n>"] = {"<cmd> Telescope <CR>", "Telescope"},
     ["<C-s>"] = {":Telescope find_files <CR>", "Telescope find files"},
     ["<leader>0"] = {":nohlsearch <CR>", "Turn off highlight"},
+    ["<leader>b"] = {":Telescope buffers <CR>", "Telescope buffers"},
+    ["<leader>gj"] = {":Gitsigns next_hunk<CR>", "next hunk"},
+    ["<leader>gk"] = {":Gitsigns prev_hunk<CR>", "prev hunk"},
+    ["<leader>gp"] = {":Gitsigns preview_hunk<CR>", "preview hunk"},
+    ["<leader>gn"] = {":Neogit <CR>", "Neogit"},
+    ["<leader>gr"] = {":Gitsigns reset_hunk<CR>", "reset hunk"},
+    ["<leader>gs"] = {":Gitsigns stage_hunk<CR>", "stage hunk"},
   },
 
   i = {

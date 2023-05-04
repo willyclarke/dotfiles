@@ -91,6 +91,20 @@ local plugins = {
     enabled = true,
   },
 
+
+  { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim',
+    lazy = false, -- load a plugin at startup
+  },
+
+  {
+    "startup-nvim/startup.nvim",
+    lazy = false, -- load a plugin at startup
+    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+    config = function()
+      require"startup".setup()
+    end
+  }
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
