@@ -16,6 +16,7 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 -- vim.o.spell = true
 vim.wo.relativenumber = true
 vim.opt.termguicolors = true
+vim.api.nvim_command('set makeprg=cmake\\ --build\\ build')
 
 vim.cmd[[
   augroup StripTrailingWhitespace
