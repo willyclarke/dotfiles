@@ -27,18 +27,18 @@ require('packer').startup(function(use)
         },
     }
 
-  -- Lua
-  use {
-    "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
+    -- Lua
+    use {
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 
     use { -- A minimal, stylish and customizable statusline / winbar for Neovim written in Lua.
         'feline-nvim/feline.nvim'
@@ -48,6 +48,16 @@ require('packer').startup(function(use)
         "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig"
     }
 
+    use {
+        "SmiteshP/nvim-navbuddy",
+        requires = {
+            "neovim/nvim-lspconfig",
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim",
+            "numToStr/Comment.nvim",        -- Optional
+            "nvim-telescope/telescope.nvim" -- Optional
+        }
+    }
 
     use { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
@@ -108,16 +118,16 @@ require('packer').startup(function(use)
         tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
     }
 
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'neovim/nvim-lspconfig',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-    },
-  }
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'neovim/nvim-lspconfig',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+        },
+    }
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -335,7 +345,7 @@ require('lualine').setup {
     },
     winbar = {},
     inactive_winbar = {},
-    extensions = {'quickfix'}
+    extensions = { 'quickfix' }
 }
 
 -- Enable Comment.nvim
@@ -366,8 +376,8 @@ require('telescope').setup {
     defaults = {
         mappings = {
             i = {
-                    ['<C-u>'] = false,
-                    ['<C-d>'] = false,
+                ['<C-u>'] = false,
+                ['<C-d>'] = false,
             },
         },
     },
@@ -416,41 +426,41 @@ require('nvim-treesitter.configs').setup {
             lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
                 -- You can use the capture groups defined in textobjects.scm
-                    ['aa'] = '@parameter.outer',
-                    ['ia'] = '@parameter.inner',
-                    ['af'] = '@function.outer',
-                    ['if'] = '@function.inner',
-                    ['ac'] = '@class.outer',
-                    ['ic'] = '@class.inner',
+                ['aa'] = '@parameter.outer',
+                ['ia'] = '@parameter.inner',
+                ['af'] = '@function.outer',
+                ['if'] = '@function.inner',
+                ['ac'] = '@class.outer',
+                ['ic'] = '@class.inner',
             },
         },
         move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
-                    [']m'] = '@function.outer',
-                    [']]'] = '@class.outer',
+                [']m'] = '@function.outer',
+                [']]'] = '@class.outer',
             },
             goto_next_end = {
-                    [']M'] = '@function.outer',
-                    [']['] = '@class.outer',
+                [']M'] = '@function.outer',
+                [']['] = '@class.outer',
             },
             goto_previous_start = {
-                    ['[m'] = '@function.outer',
-                    ['[['] = '@class.outer',
+                ['[m'] = '@function.outer',
+                ['[['] = '@class.outer',
             },
             goto_previous_end = {
-                    ['[M'] = '@function.outer',
-                    ['[]'] = '@class.outer',
+                ['[M'] = '@function.outer',
+                ['[]'] = '@class.outer',
             },
         },
         swap = {
             enable = true,
             swap_next = {
-                    ['<leader>a'] = '@parameter.inner',
+                ['<leader>a'] = '@parameter.inner',
             },
             swap_previous = {
-                    ['<leader>A'] = '@parameter.inner',
+                ['<leader>A'] = '@parameter.inner',
             },
         },
     },
@@ -464,6 +474,134 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 -- Lsp client for getting method / function context.
 local navic = require("nvim-navic")
+local navbuddy = require("nvim-navbuddy")
+local actions = require("nvim-navbuddy.actions")
+
+navbuddy.setup({
+    window = {
+        border = "single",  -- "rounded", "double", "solid", "none"
+                            -- or an array with eight chars building up the border in a clockwise fashion
+                            -- starting with the top-left corner. eg: { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" }.
+        size = "60%",       -- Or table format example: { height = "40%", width = "100%"}
+        position = "50%",   -- Or table format example: { row = "100%", col = "0%"}
+        scrolloff = nil,    -- scrolloff value within navbuddy window
+        sections = {
+            left = {
+                size = "20%",
+                border = nil, -- You can set border style for each section individually as well.
+            },
+            mid = {
+                size = "40%",
+                border = nil,
+            },
+            right = {
+                -- No size option for right most section. It fills to
+                -- remaining area.
+                border = nil,
+                preview = "leaf",  -- Right section can show previews too.
+                                   -- Options: "leaf", "always" or "never"
+            }
+        },
+    },
+    node_markers = {
+        enabled = true,
+        icons = {
+            leaf = "  ",
+            leaf_selected = " → ",
+            branch = " ",
+        },
+    },
+    icons = {
+        File          = " ",
+        Module        = " ",
+        Namespace     = " ",
+        Package       = " ",
+        Class         = " ",
+        Method        = " ",
+        Property      = " ",
+        Field         = " ",
+        Constructor   = " ",
+        Enum          = "練",
+        Interface     = "練",
+        Function      = " ",
+        Variable      = " ",
+        Constant      = " ",
+        String        = " ",
+        Number        = " ",
+        Boolean       = "◩ ",
+        Array         = " ",
+        Object        = " ",
+        Key           = " ",
+        Null          = "ﳠ ",
+        EnumMember    = " ",
+        Struct        = " ",
+        Event         = " ",
+        Operator      = " ",
+        TypeParameter = " ",
+    },
+    use_default_mappings = true,          -- If set to false, only mappings set
+                                          -- by user are set. Else default
+                                          -- mappings are used for keys
+                                          -- that are not set by user
+    mappings = {
+        ["<esc>"] = actions.close,        -- Close and cursor to original location
+        ["q"] = actions.close,
+
+        ["j"] = actions.next_sibling,     -- down
+        ["k"] = actions.previous_sibling, -- up
+
+        ["h"] = actions.parent,           -- Move to left panel
+        ["l"] = actions.children,         -- Move to right panel
+        ["0"] = actions.root,             -- Move to first panel
+
+        ["v"] = actions.visual_name,      -- Visual selection of name
+        ["V"] = actions.visual_scope,     -- Visual selection of scope
+
+        ["y"] = actions.yank_name,        -- Yank the name to system clipboard "+
+        ["Y"] = actions.yank_scope,       -- Yank the scope to system clipboard "+
+
+        ["i"] = actions.insert_name,      -- Insert at start of name
+        ["I"] = actions.insert_scope,     -- Insert at start of scope
+
+        ["a"] = actions.append_name,      -- Insert at end of name
+        ["A"] = actions.append_scope,     -- Insert at end of scope
+
+        ["r"] = actions.rename,           -- Rename currently focused symbol
+
+        ["d"] = actions.delete,           -- Delete scope
+
+        ["f"] = actions.fold_create,      -- Create fold of current scope
+        ["F"] = actions.fold_delete,      -- Delete fold of current scope
+
+        ["c"] = actions.comment,          -- Comment out current scope
+
+        ["<enter>"] = actions.select,     -- Goto selected symbol
+        ["o"] = actions.select,
+
+        ["J"] = actions.move_down,        -- Move focused node down
+        ["K"] = actions.move_up,          -- Move focused node up
+
+        ["t"] = actions.telescope({       -- Fuzzy finder at current level.
+            layout_config = {             -- All options that can be
+                height = 0.60,            -- passed to telescope.nvim's
+                width = 0.60,             -- default can be passed here.
+                prompt_position = "top",
+                preview_width = 0.50
+            },
+            layout_strategy = "horizontal"
+        })
+    },
+    lsp = {
+        auto_attach = false,   -- If set to true, you don't need to manually use attach function
+        preference = nil,      -- list of lsp server names in order of preference
+    },
+    source_buffer = {
+        follow_node = true,    -- Keep the current node in focus on the source buffer
+        highlight = true,      -- Highlight the currently focused node
+        reorient = "smart",    -- "smart", "top", "mid" or "none"
+        scrolloff = nil        -- scrolloff value when navbuddy is open
+    }
+})
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -473,6 +611,7 @@ local on_attach = function(client, bufnr)
     -- many times.
     --
     navic.attach(client, bufnr)
+    navbuddy.attach(client, bufnr)
 
     -- In this case, we create a function that lets us more easily define mappings specific
     -- for LSP related items. It sets the mode, buffer and description for us each time.
@@ -496,7 +635,7 @@ local on_attach = function(client, bufnr)
 
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -519,6 +658,7 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
     clangd = {},
+    texlab = {},
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
