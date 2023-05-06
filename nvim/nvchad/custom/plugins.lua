@@ -144,6 +144,25 @@ local plugins = {
     end,
   },
 
+  {
+    "SmiteshP/nvim-gps",
+    -- requires = "nvim-treesitter/nvim-treesitter",
+    enabled = true,
+    lazy = false,
+    config = function()
+      print("Setting up nvim-gps")
+      require("nvim-gps").setup({
+        icons = {
+          ["class-name"] = " ", -- Classes and class-like objects
+          ["function-name"] = " ", -- Functions
+          ["method-name"] = " ", -- Methods (functions inside class-like objects)
+          ["container-name"] = "⛶ ", -- Containers (example: lua tables)
+          ["tag-name"] = "炙", -- Tags (example: html tags)
+        },
+      })
+    end,
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
