@@ -407,7 +407,8 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+    ensure_installed = { 'c', 'cpp', 'cmake', 'go', 'latex', 'lua', 'luadoc', 'markdown_inline', 'python', 'rust',
+        'typescript', 'zig' },
 
     highlight = { enable = true },
     indent = { enable = true, disable = { 'python' } },
@@ -479,12 +480,12 @@ local actions = require("nvim-navbuddy.actions")
 
 navbuddy.setup({
     window = {
-        border = "single",  -- "rounded", "double", "solid", "none"
-                            -- or an array with eight chars building up the border in a clockwise fashion
-                            -- starting with the top-left corner. eg: { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" }.
-        size = "60%",       -- Or table format example: { height = "40%", width = "100%"}
-        position = "50%",   -- Or table format example: { row = "100%", col = "0%"}
-        scrolloff = nil,    -- scrolloff value within navbuddy window
+        border = "single", -- "rounded", "double", "solid", "none"
+        -- or an array with eight chars building up the border in a clockwise fashion
+        -- starting with the top-left corner. eg: { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" }.
+        size = "60%",     -- Or table format example: { height = "40%", width = "100%"}
+        position = "50%", -- Or table format example: { row = "100%", col = "0%"}
+        scrolloff = nil,  -- scrolloff value within navbuddy window
         sections = {
             left = {
                 size = "20%",
@@ -498,8 +499,8 @@ navbuddy.setup({
                 -- No size option for right most section. It fills to
                 -- remaining area.
                 border = nil,
-                preview = "leaf",  -- Right section can show previews too.
-                                   -- Options: "leaf", "always" or "never"
+                preview = "leaf", -- Right section can show previews too.
+                -- Options: "leaf", "always" or "never"
             }
         },
     },
@@ -539,12 +540,12 @@ navbuddy.setup({
         Operator      = " ",
         TypeParameter = " ",
     },
-    use_default_mappings = true,          -- If set to false, only mappings set
-                                          -- by user are set. Else default
-                                          -- mappings are used for keys
-                                          -- that are not set by user
+    use_default_mappings = true, -- If set to false, only mappings set
+    -- by user are set. Else default
+    -- mappings are used for keys
+    -- that are not set by user
     mappings = {
-        ["<esc>"] = actions.close,        -- Close and cursor to original location
+        ["<esc>"] = actions.close, -- Close and cursor to original location
         ["q"] = actions.close,
 
         ["j"] = actions.next_sibling,     -- down
@@ -578,13 +579,14 @@ navbuddy.setup({
         ["<enter>"] = actions.select,     -- Goto selected symbol
         ["o"] = actions.select,
 
-        ["J"] = actions.move_down,        -- Move focused node down
-        ["K"] = actions.move_up,          -- Move focused node up
+        ["J"] = actions.move_down,  -- Move focused node down
+        ["K"] = actions.move_up,    -- Move focused node up
 
-        ["t"] = actions.telescope({       -- Fuzzy finder at current level.
-            layout_config = {             -- All options that can be
-                height = 0.60,            -- passed to telescope.nvim's
-                width = 0.60,             -- default can be passed here.
+        ["t"] = actions.telescope({ -- Fuzzy finder at current level.
+            layout_config = {
+                -- All options that can be
+                height = 0.60, -- passed to telescope.nvim's
+                width = 0.60,  -- default can be passed here.
                 prompt_position = "top",
                 preview_width = 0.50
             },
@@ -592,14 +594,14 @@ navbuddy.setup({
         })
     },
     lsp = {
-        auto_attach = false,   -- If set to true, you don't need to manually use attach function
-        preference = nil,      -- list of lsp server names in order of preference
+        auto_attach = false, -- If set to true, you don't need to manually use attach function
+        preference = nil,    -- list of lsp server names in order of preference
     },
     source_buffer = {
-        follow_node = true,    -- Keep the current node in focus on the source buffer
-        highlight = true,      -- Highlight the currently focused node
-        reorient = "smart",    -- "smart", "top", "mid" or "none"
-        scrolloff = nil        -- scrolloff value when navbuddy is open
+        follow_node = true, -- Keep the current node in focus on the source buffer
+        highlight = true,   -- Highlight the currently focused node
+        reorient = "smart", -- "smart", "top", "mid" or "none"
+        scrolloff = nil     -- scrolloff value when navbuddy is open
     }
 })
 
