@@ -129,6 +129,8 @@ require('packer').startup(function(use)
         },
     }
 
+    use { 'neomake/neomake' }
+
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
     if has_plugins then
@@ -382,6 +384,8 @@ require('telescope').setup {
         },
     },
 }
+
+-- require('neomake').setup({})
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

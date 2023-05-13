@@ -1,3 +1,28 @@
+
+--
+-- Tips
+-- Writing print(vim.inspect(x)) every time you want to inspect
+-- the contents of an object can get pretty tedious. It might be
+-- worthwhile to have a global wrapper function somewhere in your
+-- configuration (in Neovim 0.7.0+, this function is built-in,
+-- see :help vim.pretty_print()):
+--
+function _G.put(...)
+  local objects = {}
+  for i = 1, select('#', ...) do
+    local v = select(i, ...)
+    table.insert(objects, vim.inspect(v))
+  end
+
+  print(table.concat(objects, '\n'))
+  return ...
+end
+
+-- Smart tab. From https://github.com/nanotee/nvim-lua-guide
+vim.keymap.set('i', '<Tab>', function()
+    return vim.fn.pumvisible() == 1 and '<C-N>' or '<Tab>'
+end, {expr = true})
+
 local status_ok, utils = pcall(require, 'utils')
 if not status_ok then
   print('localinit: Could not load utils plugin. Will return.')
@@ -25,10 +50,27 @@ if not status_ok_project_config then
   return
 end
 
-local all_ok = pc and wk and utils and settings
+local status_ok_markdown_convert, asyncmdconv = pcall(require, 'ww-async-markdown')
+if not status_ok_markdown_convert then
+  print('localinit: Could not load async-markdown plugin')
+end
+
+local status_ok_grep, asyncgrep = pcall(require, 'ww-async-grep')
+if not status_ok_grep then
+  print('localinit: Could not load async-markdown plugin')
+end
+
+local all_ok = pc and wk and utils and settings and asyncmdconv and asyncgrep
 if all_ok and false then
   print('Loaded all the plugins that was requested')
 end
+
+-- Assign the Grep command so that it can be called with :Grep searchTerm
+vim.api.nvim_command('command! -nargs=+ -complete=dir -bar Grep lua require("ww-async-grep").asyncGrep(<q-args>)')
+-- Grep word under the cursor
+vim.cmd([[ command! -nargs=* -complete=dir -bar WordGrep lua require("ww-async-grep").grepWordUnderCursor(<q-args>) ]])
+-- Start build command
+vim.cmd([[ command! -nargs=* -complete=dir -bar AsyncBuild lua require("ww-async-grep").asyncBuild(<q-args>) ]])
 
 vim.api.nvim_set_hl(0, "NavicIconsFile", { default = true, bg = "#000000", fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "NavicIconsModule", { default = true, bg = "#000000", fg = "#ffffff" })
@@ -200,6 +242,6 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
-      { name = 'cmdline' }
-    })
+    { name = 'cmdline' }
+  })
 })

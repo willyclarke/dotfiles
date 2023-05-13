@@ -117,11 +117,14 @@ local mappings = {
   m = {
     name = "Make",
     m = { "<cmd>make<cr><cr><cmd>copen<cr>", "Make" },
+    n = { "<cmd>Neomake!<cr><cr><cmd>copen<cr>", "Neomake!" },
     s = {
       name = "Setup",
       c = { "<cmd>set makeprg=cmake\\ --build\\ build\\ -j<cr>", "Setup cmake to: cmake --build build" },
       l = { "<cmd>set makeprg=pdflatex\\ %<cr>", "Setup make to: pdflatex %" },
       m = { "<cmd>set makeprg=make\\ -C\\ build\\ -j<cr>", "Setup make to: make -C build -j" },
+      n = { "<cmd>lua require\'ww-async-markdown\'.convertFile()<CR>", "Convert markdown" },
+      o = { "<cmd>lua require\'ww-async-grep\'.asyncGrep()<CR>", "Async Grep" },
     },
   },
 
