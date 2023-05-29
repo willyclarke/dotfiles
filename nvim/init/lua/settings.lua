@@ -26,8 +26,8 @@ vim.api.nvim_set_keymap('n', '<C-k>', 'ddkP', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-j>', 'ddp', { noremap = true, silent = true })
 
 -- Insert mode motions
-vim.api.nvim_set_keymap('i', '<C-j>', '<Down>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-k>', '<Up>', { noremap = true })
+-- vim.api.nvim_set_keymap('i', '<C-j>', '<Down>', { noremap = true })
+-- vim.api.nvim_set_keymap('i', '<C-k>', '<Up>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-h>', '<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-l>', '<Right>', { noremap = true })
 

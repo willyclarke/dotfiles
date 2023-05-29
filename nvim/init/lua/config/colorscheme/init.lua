@@ -416,7 +416,7 @@ setmetatable(M.colorschemes, {
 -- #16161D is called eigengrau and is kinda-ish the color your see when you
 -- close your eyes. It makes for a really good background.
 M.colorschemes["schemer-dark"] = {
-  base00 = "#16161D",
+  base00 = "#ffffff",
   base01 = "#3e4451",
   base02 = "#2c313c",
   base03 = "#565c64",
@@ -434,7 +434,7 @@ M.colorschemes["schemer-dark"] = {
   base0F = "#a06949",
 }
 M.colorschemes["schemer-medium"] = {
-  base00 = "#212226",
+  base00 = "#444444",
   base01 = "#3e4451",
   base02 = "#2c313c",
   base03 = "#565c64",

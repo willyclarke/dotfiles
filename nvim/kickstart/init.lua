@@ -81,7 +81,6 @@ require('packer').startup(function(use)
         end
     }
 
-    use 'navarasu/onedark.nvim'      -- Theme inspired by Atom
     use {
         'nvim-lualine/lualine.nvim', -- Fancier statusline
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -216,7 +215,7 @@ vim.opt.scrolloff = 8
 -- Set colorscheme
 vim.o.guicursor = ""
 vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
+-- vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -666,7 +665,7 @@ local servers = {
     clangd = {},
     texlab = {},
     -- gopls = {},
-    -- pyright = {},
+    pyright = {},
     -- rust_analyzer = {},
     -- tsserver = {},
 
@@ -702,6 +701,13 @@ mason_lspconfig.setup_handlers {
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+
+-- require('config/colorscheme/init') -- Colorscheme library.
+-- require('config/colorscheme/ww-colorscheme-monokay')       -- Set up the actual color scheme.
+-- require('config/colorscheme/ww-colorscheme-everforest')    -- Set up the actual color scheme.
+-- require('config/colorscheme/ww-colorscheme-google-light')  -- Set up the actual color scheme.
+require('config/colorscheme/ww-colorscheme-neovim')        -- Set up the actual color scheme.
 
 require('localinit')
 
