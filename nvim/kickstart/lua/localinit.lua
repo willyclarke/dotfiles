@@ -157,6 +157,8 @@ require('alpha').setup(require 'alpha.themes.startify'.config)
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
+    number = true,
+    relativenumber = true,
     adaptive_size = true,
     mappings = {
       list = {
