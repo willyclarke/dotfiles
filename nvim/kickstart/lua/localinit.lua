@@ -154,26 +154,6 @@ require('feline').setup()
 require('feline').winbar.setup({ components = components })
 require('alpha').setup(require 'alpha.themes.startify'.config)
 
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    number = true,
-    relativenumber = true,
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-
 -- Set up nvim-cmp.
 local cmp = require 'cmp'
 cmp.setup({

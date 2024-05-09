@@ -353,11 +353,7 @@ require('lualine').setup {
 require('Comment').setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-    char = '┊',
-    show_trailing_blankline_indent = false,
-}
+require("ibl").setup()
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -662,7 +658,7 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-    clangd = {},
+    -- clangd = {}, -- does not work on arm since there is no binary available from mason.
     texlab = {},
     -- gopls = {},
     pyright = {},
@@ -676,6 +672,25 @@ local servers = {
     --     },
     -- },
 }
+
+--
+-- On the arm architecture Mason does not provide an Arm installer for clangd.
+-- So try to use the system installed one instead.
+--
+vim.lsp.start({
+  name = 'clangd',
+  cmd = {'/usr/bin/clangd'},
+  root_dir = vim.fs.dirname(vim.fs.find({'compile_commands.json'}, { upward = true })[1]),
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.hoverProvider then
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
+    end
+  end,
+})
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -710,6 +725,8 @@ require('fidget').setup()
 require('config/colorscheme/ww-colorscheme-neovim')        -- Set up the actual color scheme.
 
 require('localinit')
+
+require('ftplugin/cpp')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
