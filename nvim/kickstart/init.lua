@@ -98,7 +98,7 @@ require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim', -- Fancier statusline
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+    -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
     use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
 
@@ -361,9 +361,6 @@ require('lualine').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
-
--- Enable `lukas-reineke/indent-blankline.nvim`
-require("ibl").setup()
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
