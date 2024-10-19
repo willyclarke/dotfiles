@@ -79,6 +79,11 @@ require('packer').startup(function(use)
         after = 'nvim-treesitter',
     }
 
+    use { -- Additional objects via treesitter
+        'nvim-treesitter/playground',
+        after = 'nvim-treesitter',
+    }
+
     -- Git related plugins
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
