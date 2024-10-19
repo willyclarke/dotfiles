@@ -110,14 +110,6 @@ require('packer').startup(function(use)
     })
 
     use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-        tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
-    }
-
-    use {
         'hrsh7th/nvim-cmp',
         requires = {
             'neovim/nvim-lspconfig',
@@ -129,6 +121,11 @@ require('packer').startup(function(use)
     }
 
     use { 'neomake/neomake' }
+
+    -- oil filemanager plugin
+    use({ "stevearc/oil.nvim", config = function()
+      require("oil").setup()
+    end,})
 
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, 'custom.plugins')
