@@ -72,6 +72,14 @@ vim.cmd([[ command! -nargs=* -complete=dir -bar WordGrep lua require("ww-async-g
 -- Start build command
 vim.cmd([[ command! -nargs=* -complete=dir -bar AsyncBuild lua require("ww-async-grep").asyncBuild(<q-args>) ]])
 
+vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#ff5f5f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'DiffText', { fg = '#ff5f5f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#ff5f5f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NeogitDiffDelete', { fg = '#ff5f5f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NeogitDiffDeleteRegion', { fg = '#ff5f5f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NeogitDiffDeleteHighlight', { fg = '#ff5f5f', bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'NeogitDiffDeleteCursor', { fg = '#fff5f5', bg = 'NONE' })
+
 vim.api.nvim_set_hl(0, "NavicIconsFile", { default = true, bg = "#000000", fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "NavicIconsModule", { default = true, bg = "#000000", fg = "#ffffff" })
 vim.api.nvim_set_hl(0, "NavicIconsNamespace", { default = true, bg = "#000000", fg = "#ffffff" })
