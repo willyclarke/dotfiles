@@ -1,0 +1,17 @@
+-- Old style config and keymaps to my liking
+require("config.utils")
+require("config.keymaps")
+require("config.options")
+
+-- Load the lazy plugin manager.
+-- the tree structure that follows is supported:
+-- ./init.lua
+-- |
+-- +--lua/config
+-- +--lua/plugins
+-- +--vim/
+--
+require("config.lazy")
+
+-- Vim script files comes here ...
+vim.cmd("source " .. vim.fn.stdpath("config") .. "/vim/ww-word-highlight.vim")
