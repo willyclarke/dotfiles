@@ -1,4 +1,4 @@
-local Utils = require("utils")
+local Utils = require("config.utils")
 
 local exprnnoremap = Utils.exprnnoremap
 local nnoremap = Utils.nnoremap
@@ -47,8 +47,8 @@ nnoremap('<cr>', ':noh<CR><CR>:<backspace>')
 nnoremap("<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 
 -- Make it easier to edit the init.lua file
--- nnoremap("<leader>se", ":luafile $MYVIMRC<CR>")
--- nnoremap("<leader>ve", ":vsplit $MYVIMRC<CR>")
+nnoremap("<leader>se", ":luafile $MYVIMRC<CR>")
+nnoremap("<leader>ve", ":vsplit $MYVIMRC<CR>")
 
 -- Save my buffer
 -- nnoremap("<leader>fs", ":w<CR>")
@@ -59,16 +59,17 @@ nnoremap("<C-p>", [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 nnoremap('<tab>', '%')
 
 -- Copy current absolute filename into register
--- nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
+nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
 -- Yank file of which filename was already copied into register.
--- nnoremap('<leader>yf', ':%y+<cr>')
+nnoremap('<leader>yf', ':%y+<cr>')
 
 -- nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
 nnoremap("<leader>mm", [[<cmd>YabsTask build<CR>]])
 -- May add support for these later, since they look interresting ...
 -- nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
 -- nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
--- nnoremap("<leader>t", ':vertical split<CR><C-w>l :terminal<CR>i')
+nnoremap("<leader>t", ':vertical split<CR><C-w>l :terminal<CR>i')
+nnoremap("<leader>h", ':split<CR><C-w>j :terminal<CR>i')
 
 --
 -- INSERT MODE REMAPPINGS --
@@ -91,6 +92,7 @@ inoremap('jk', '<esc>')
 -- inoremap('```', '```<cr>```<esc>O')
 -- Jump over the doubled up chars above you can use Ctrl-l
 inoremap('<c-l>', '<right>')
+inoremap('<c-h>', '<left>')
 -- Move a line downwards
 inoremap('<C-j>', '<Esc>:m .+1<CR>==gi')
 -- inoremap('<tab>', '%' )
