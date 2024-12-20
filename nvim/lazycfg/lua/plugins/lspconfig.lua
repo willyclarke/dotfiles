@@ -57,6 +57,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
             end
 
+            nmap('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
+            nmap('<leader>lf', vim.lsp.buf.format, 'LSP Format')
+            nmap('<leader>lr', vim.lsp.buf.rename, '[R]e[n]ame')
+            nmap('<leader>ls', vim.lsp.buf.signature_help, 'Signature Documentation')
             nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
             nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
@@ -71,7 +75,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
             nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
             -- vim.notify("Setting K as LspHover", vim.log.levels.DEBUG)
 
-            nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+            -- Used for moving line up instead
+            -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
             -- Lesser used LSP functionality
             nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')

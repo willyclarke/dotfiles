@@ -52,13 +52,14 @@ iabbrev <silent> fixme FIXME: (Willy Clarke)
 iabbrev <silent> bugf BUGFIX:
 iabbrev <silent> enha ENHANCEMENT:
 iabbrev <silent> w@ willy@clarke.no
-iabbrev <silent> if if (<C-R>=Eatchar('\s')<CR>
-iabbrev <silent> while while (<C-R>=Eatchar('\s')<CR>
-iabbrev <silent> fidx for (size_t Idx = 0; <CR>Idx <; <CR> ++Idx)<CR>{<CR><Up><Up><Up><Esc>f;e
-iabbrev <silent> faut for (auto E : )<CR>{<CR><Up><Up><Esc>f:a
-iabbrev <silent> fitr for (auto it = MyContainer.cbegin();  //!<<CR>it != MyContainer.cend();//!<<CR> ++it)<CR>{<CR><Up><Up><Up><Esc>fMciw
-iabbrev <silent> loginfo LOGINFO("{} -> {}", __FUNCTION__, "A text");
-iabbrev <silent> logerr LOGERROR("{} -> {}", __FUNCTION__, "A text");
+iabbrev <silent> _if if (<C-R>=Eatchar('\s')<CR>
+iabbrev <silent> _while while (<C-R>=Eatchar('\s')<CR>
+iabbrev <silent> _fidx for (size_t Idx = 0;<CR>Idx < 0;<CR> ++Idx)<CR>{<CR><CR>}<Esc>2k
+iabbrev <silent> _faut for (auto const &Elem : MyContainer)<CR>{<CR><Esc>2k
+iabbrev <silent> _fitr for (auto it = MyContainer.cbegin();<CR>it != MyContainer.cend();<CR> ++it)<CR>{<CR><Up><Up><Up><Esc>fMciw
+iabbrev <silent> _logcout LOGCOUT("{} -> {}", __FUNCTION__, "A text");
+iabbrev <silent> _loginfo LOGINFO("{} -> {}", __FUNCTION__, "A text");
+iabbrev <silent> _logerr LOGERROR("{} -> {}", __FUNCTION__, "A text");
 iabbrev <silent> sendl std::endl
 iabbrev <silent> ;; << std::endl;<CR>
 iabbrev <silent> scout std::cout <<
