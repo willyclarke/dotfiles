@@ -17,6 +17,9 @@ return {
         },
         { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Find Buffers", mode = "n" },
         { "<leader>e", "<cmd>Oil --float<cr>", desc = "Oil Filemanager", mode = "n" },
+        { "<leader>G", "<cmd>Telescope live_grep<cr>", desc = "Live Grep", mode = "n" },
+        { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in current buffer", mode = "n" },
+
         { "<leader>f", group = "file" }, -- group
         { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
 
