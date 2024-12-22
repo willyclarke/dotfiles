@@ -1,0 +1,27 @@
+
+local function start_clangd()
+    -- Run 'which clangd' and trim any trailing whitespace
+    local clangd_path = vim.fn.system("which clangd"):gsub("%s+$", "")
+
+    -- Check if clangd was found
+    if clangd_path == "" then
+        vim.notify("clangd not found in PATH ", vim.log.levels.ERROR)
+        return
+    end
+
+    -- Start LSP with clangd
+    vim.lsp.start({
+        name = 'clangd',
+        cmd = { clangd_path }, -- Use the dynamically determined path
+        root_dir = vim.fs.dirname(vim.fs.find({ 'compile_commands.json' }, { upward = true })[1]),
+    })
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+    -- This handler will fire when the buffer's 'filetype' is "cpp"
+    pattern = 'cpp',
+    callback = function(args)
+        vim.notify('Starting clangd', vim.log.levels.INFO)
+        start_clangd()
+    end,
+})
