@@ -66,7 +66,7 @@ return {
         opts = {
             servers = {
                 lua_ls = {},
-                clangd = {},
+                -- clangd = {},
             }
         },
         config = function(_, opts)
@@ -137,4 +137,5 @@ return {
             vim.api.nvim_set_keymap("n", "<leader>xa", ":Alpha<CR>", { noremap = true })
         end
     },
+
 }
