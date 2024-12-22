@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd('FileType', {
     -- This handler will fire when the buffer's 'filetype' is "cpp"
     pattern = 'cpp',
     callback = function(args)
-        vim.notify('Starting clangd', vim.log.levels.INFO)
+        -- vim.notify('Starting clangd', vim.log.levels.INFO)
         start_clangd()
     end,
 })
@@ -117,11 +117,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client and client.server_capabilities.documentSymbolProvider then
-            vim.notify("FileType-navic-cppa2: documentSymbolProvider is available", vim.log.levels.INFO)
             navic.attach(client, bufnr)
-            vim.notify("FileType-navic-cppa3: navic.attach executed", vim.log.levels.INFO)
         else
-            vim.notify("FileType-navic-cpp-error: documentSymbolProvider not available", vim.log.levels.INFO)
+            vim.notify("FileType-navic-cpp-error: documentSymbolProvider not available", vim.log.levels.ERROR)
         end
     end,
 })

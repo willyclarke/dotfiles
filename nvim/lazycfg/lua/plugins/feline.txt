@@ -3,8 +3,14 @@ return
     'feline-nvim/feline.nvim',
     branch = '0.5-compat',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
+
     init = function()
-        local navic = require("nvim-navic")
+        local ok, navic = pcall(require, "nvim-navic")
+        if not ok then
+            vim.notify('FileType-navic-cpp-error: Failed to load nvim-navic', vim.log.levels.ERROR)
+            return
+        end
+
         local components = {
             active = { {}, {}, {} },
         }
