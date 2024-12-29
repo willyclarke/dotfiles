@@ -1,6 +1,8 @@
 return {
     'nvim-lualine/lualine.nvim',
+    enabled = true,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    highlights = true,
 
     options = { theme = 'auto' },
 
@@ -8,25 +10,24 @@ return {
         -- Check if "nvim-navic" can be required
         local ok, navic = pcall(require, "nvim-navic")
         if not ok then
-            print('FileType-navic-cpp-error: Failed to load nvim-navic')
+            print('FileType-navic-error: Failed to load nvim-navic')
             return
         end
         require("lualine").setup({
             sections = {
                 lualine_c = {
-                    "navic",
-
-                    -- Component specific options
-                    color_correction = nil, -- Can be nil, "static" or "dynamic". This option is useful only when you have highlights enabled.
-                    -- Many colorschemes don't define same backgroud for nvim-navic as their lualine statusline backgroud.
-                    -- Setting it to "static" will perform a adjustment once when the component is being setup. This should
-                    --	 be enough when the lualine section isn't changing colors based on the mode.
-                    -- Setting it to "dynamic" will keep updating the highlights according to the current modes colors for
-                    --	 the current section.
-
-                    navic_opts = nil -- lua table with same format as setup's option. All options except "lsp" options take effect when set here.
-
-                },
+                    {
+                        function()
+                            return navic.get_location()
+                        end,
+                        cond = function()
+                            return navic.is_available()
+                        end,
+                        color = function()
+                            return { fg = vim.bo.modified and '#aa3355' or '#33aa88' }
+                        end,
+                    },
+                }
             }
         })
     end

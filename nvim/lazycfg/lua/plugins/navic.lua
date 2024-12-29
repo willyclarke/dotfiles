@@ -1,5 +1,6 @@
 local M = {
     "SmiteshP/nvim-navic",
+    enabled = true,
     dependencies = "neovim/nvim-lspconfig",
     lazy = false,
     lazy_update_context = true,
@@ -9,7 +10,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        vim.notify('Symbols will be reported with navic', vim.log.levels.INFO)
+        -- vim.notify('Symbols will be reported with navic', vim.log.levels.INFO)
 
         -- Check if "nvim-navic" can be required
         local ok, navic = pcall(require, "nvim-navic")
