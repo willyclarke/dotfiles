@@ -63,13 +63,7 @@ nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
 -- Yank file of which filename was already copied into register.
 nnoremap('<leader>yf', ':%y+<cr>')
 
--- nnoremap("<leader>gg", [[<cmd>Neogit<CR>]])
 nnoremap("<leader>mm", [[<cmd>YabsTask build<CR>]])
--- May add support for these later, since they look interresting ...
--- nnoremap("<leader>e", [[<cmd>NvimTreeToggle<CR>]])
--- nnoremap("<leader>s", [[<cmd>SymbolsOutline<CR>]])
--- nnoremap("<leader>t", ':vertical split<CR><C-w>l :terminal<CR>i')
--- nnoremap("<leader>h", ':split<CR><C-w>j :terminal<CR>i')
 
 --
 -- INSERT MODE REMAPPINGS --

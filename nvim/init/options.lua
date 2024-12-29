@@ -1,6 +1,9 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+vim.opt.verbosefile = vim.fn.stdpath("state") .. "/verbose.log"
+vim.opt.verbose = 1 -- Maximum verbosity level
+
 -- Set highlight on search
 vim.o.hlsearch = true
 

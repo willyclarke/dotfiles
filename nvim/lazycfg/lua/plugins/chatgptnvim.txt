@@ -1,0 +1,51 @@
+local openai_config = require("config.chatgptkey")
+
+-- set flag to true to display the api_key when read from file.
+local notify = false
+
+local api_key = openai_config.get_openai_api_key(notify)
+
+local M = {
+  "jackMort/ChatGPT.nvim",
+  diable = true,
+  event = "VeryLazy",
+  config = function()
+    require("chatgpt").setup({
+      event = "VeryLazy",
+      api_key = api_key,
+      -- this config assumes you have OPENAI_API_KEY environment variable set
+      openai_params = {
+        -- NOTE: model can be a function returning the model name
+        -- this is useful if you want to change the model on the fly
+        -- using commands
+        -- Example:
+        -- model = function()
+        --     if some_condition() then
+        --         return "gpt-4-1106-preview"
+        --     else
+        --         return "gpt-3.5-turbo"
+        --     end
+        -- end,
+        -- model = "gpt-3.5-turbo",
+        -- model = "gpt-3.5-turbo-1106",
+        -- model = "gpt-4-1106-preview",
+        model = "gpt-4o",
+        -- model = "gpt-4o-2024-11-20",
+        frequency_penalty = 0,
+        presence_penalty = 0,
+        max_tokens = 4095,
+        temperature = 0.2,
+        top_p = 0.1,
+        n = 1,
+      }
+    })
+  end,
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "nvim-lua/plenary.nvim",
+    "folke/trouble.nvim", -- optional
+    "nvim-telescope/telescope.nvim"
+  }
+}
+
+return M
