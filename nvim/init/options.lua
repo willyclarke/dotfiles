@@ -46,7 +46,7 @@ vim.o.smartcase = true
 vim.o.updatetime = 50
 
 -- Allocate space for signs
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'yes:1'
 
 -- Avoid scrolling to the end of the screen
 vim.opt.scrolloff = 8

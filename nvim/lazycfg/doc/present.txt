@@ -1,0 +1,26 @@
+*present.txt*    present
+
+This is the help file for present.
+
+-------------------------------------------------------------------------------
+DESCRIPTION                                                        *present*
+This is a plugin for presenting markdown files.
+
+COMMANDS                                                           *present-commands*
+# Usage
+
+```lua
+require("present").start_presentation { }
+```
+
+Use `n` and `p` to navigate markdown slides.
+Use `q` to quit.
+
+-------------------------------------------------------------------------------
+INSTALLATION                                                      *present-install*
+1. Copy the plugin directory to `~/.config/nvim/lua/present/`.
+2. Restart Neovim and run:
+   :helptags ~/.config/nvim/lua/present/doc
+3. Access this help file with:
+   :help present
+
