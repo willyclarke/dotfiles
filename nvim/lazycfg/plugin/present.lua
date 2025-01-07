@@ -5,68 +5,49 @@ M.setup = function()
 end
 
 ---@class present.Slides
----@fields slides string[]: The slides of the file
+---@fields slides present.Slide[]: The slides of the file
 
+---@class present.Slide
+---@field title string: The title of the slide
+---@field body string[]: The body of the slide
+---
 --- Takes some lines and parses them
 --- @param lines string[]: The lines in the buffer
 --- @return present.Slides
 local parse_slides = function(lines)
   local slides = { slides = {} }
-  local current_slide = {}
+  local current_slide = {
+    title = "",
+    body = {},
+  }
   local separator = "^#"
 
   for _, line in ipairs(lines) do
     print(line, "find:", line:find(separator), "|")
     if line:find(separator) then
-      if #current_slide > 0 then
+      if #current_slide.title > 0 then
         table.insert(slides.slides, current_slide)
       end
-      current_slide = {}
+      current_slide = {
+        title = line,
+        body = {}
+      }
+    else
+      table.insert(current_slide.body, line)
     end
-
-    table.insert(current_slide, line)
   end
+
   table.insert(slides.slides, current_slide)
 
   return slides
 end
 
-local function create_floating_window(opts)
-  opts = opts or {}
-
-  -- Get the current screen size
-  local ui = vim.api.nvim_list_uis()[1]
-  local screen_width = ui.width
-  local screen_height = ui.height
-
-  -- Default width and height (80% of screen size)
-  local default_width = math.floor(screen_width * 0.8)
-  local default_height = math.floor(screen_height * 0.8)
-
-  -- Use provided width and height or fallback to defaults
-  local width = opts and opts.width or default_width
-  local height = opts and opts.height or default_height
-
-  -- Calculate the centered position
-  local col = math.floor((screen_width - width) / 2)
-  local row = math.floor((screen_height - height) / 2)
-
+local function create_floating_window(config)
   -- Create a buffer
   local buf = vim.api.nvim_create_buf(false, true) -- no file, scratch buffer
 
-  -- Configure the window options
-  local win_config = {
-    relative = "editor", -- Position relative to the entire editor
-    width = width,
-    height = height,
-    col = col,
-    row = row,
-    style = "minimal",  -- Minimal style (no borders, no title bar)
-    border = "rounded", -- Optional: Add rounded borders
-  }
-
   -- Create the floating window
-  local win = vim.api.nvim_open_win(buf, true, win_config)
+  local win = vim.api.nvim_open_win(buf, true, config)
 
   return { buf = buf, win = win }
 end
@@ -77,34 +58,109 @@ M.start_presentation = function(opts)
 
   local lines = vim.api.nvim_buf_get_lines(opts.bufnr, 0, -1, false)
   local parsed = parse_slides(lines)
-  local float = create_floating_window()
+  local width = vim.o.columns
+  local height = vim.o.lines
+
+  ---@type vim.api.keyset.win_config[]
+  local windows = {
+    background = {
+      relative = "editor",
+      width = width,
+      height = 1,
+      style = "minimal",
+      col = 0,
+      row = 0,
+      zindex = 1,
+    },
+    header = {
+      relative = "editor",
+      width = width,
+      height = 1,
+      style = "minimal",
+      border = "rounded",
+      col = 0,
+      row = 0,
+      zindex = 2,
+    },
+    body = {
+      relative = "editor",
+      width = width,
+      height = height - 5,
+      style = "minimal",
+      border = { " ", " ", " ", " ", " ", " ", " ", " ", },
+      col = 1,
+      row = 4,
+    },
+    -- footer = {},
+  }
+
+  local background_float = create_floating_window(windows.background)
+  local header_float = create_floating_window(windows.header)
+  local body_float = create_floating_window(windows.body)
+  vim.bo[header_float.buf].filetype = "markdown"
+  vim.bo[body_float.buf].filetype = "markdown"
+
+  local set_slide_content = function(idx)
+    local slide = parsed.slides[idx]
+    local padding = string.rep(" ", (width - #slide.title) / 2)
+    local title = padding .. slide.title
+
+    vim.api.nvim_buf_set_lines(header_float.buf, 0, -1, false, { title })
+    vim.api.nvim_buf_set_lines(body_float.buf, 0, -1, false, slide.body)
+  end
 
   local current_slide = 1
+
   -- Set up local keymaps for slide show.
   vim.keymap.set("n", "n",
     function()
       current_slide = math.min(current_slide + 1, #parsed.slides)
-      vim.api.nvim_buf_set_lines(float.buf, 0, -1, false, parsed.slides[current_slide])
-    end, { buffer = float.buf }
+      set_slide_content(current_slide)
+    end, { buffer = body_float.buf }
   )
 
   vim.keymap.set("n", "p",
     function()
       current_slide = math.max(current_slide - 1, 1)
-      vim.api.nvim_buf_set_lines(float.buf, 0, -1, false, parsed.slides[current_slide])
-    end, { buffer = float.buf }
+      set_slide_content(current_slide)
+    end, { buffer = body_float.buf }
   )
 
-  vim.keymap.set("n", "q", function() vim.api.nvim_win_close( float.win, true ) end, { buffer = float.buf })
+  vim.keymap.set("n", "q", function() vim.api.nvim_win_close(body_float.win, true) end, { buffer = body_float.buf })
 
-  vim.api.nvim_buf_set_lines(float.buf, 0, -1, false, parsed.slides[1])
+  local restore = {
+    cmdheight = {
+      original = vim.o.cmdheight,
+      present = 0,
+    },
+  }
+
+  -- Set the options we want during presentation.
+  for option, config in pairs(restore) do
+    vim.opt[option] = config.present
+  end
+
+  vim.api.nvim_create_autocmd("BufLeave", {
+    buffer = body_float.buf,
+    callback = function()
+      -- Reset the values when we are done with the presentation.
+      for option, config in pairs(restore) do
+        vim.opt[option] = config.original
+      end
+      print "YYYYAY"
+      pcall(vim.api.nvim_win_close, background_float.win, true)
+      pcall(vim.api.nvim_win_close, header_float.win, true)
+    end
+  })
+
+  set_slide_content(current_slide)
 end
 
 ---
---- for test purpose 
+--- for test purpose
 --- use :echo nvim_get_curr_buf()
 --- and then use the buffer number to start the presentation.
--- M.start_presentation { bufnr = 3 }
+-- M.start_presentation { bufnr = 5 }
 --
 -- vim.print(parse_slides {
 --   "#Hello",
