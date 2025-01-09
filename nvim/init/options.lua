@@ -46,7 +46,7 @@ vim.o.smartcase = true
 vim.o.updatetime = 50
 
 -- Allocate space for signs
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = 'yes:2'
 
 -- Avoid scrolling to the end of the screen
 vim.opt.scrolloff = 8
@@ -58,6 +58,12 @@ vim.o.termguicolors = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+-- Highlight for relative line numbers
+vim.api.nvim_set_hl(0, "LineNr", { fg = "MAGENTA", bg = "NONE" })
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "YELLOW", bg = "NONE" })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "ORANGE", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "GREEN", bg = "NONE", bold = true })
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
