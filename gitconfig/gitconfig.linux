@@ -1,0 +1,9 @@
+[gpg]
+    program = gpg
+
+[user]
+    name = Willy Clarke
+    email = willy@clarke.no
+    ; signingkey = 
+
+

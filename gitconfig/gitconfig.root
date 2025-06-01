@@ -1,0 +1,8 @@
+[include]
+    path = ~/.config/git/gitconfig
+
+[includeIf "os:macos"]
+    path = ~/.config/git/gitconfig.macos
+
+[includeIf "os:linux"]
+    path = ~/.config/git/gitconfig.linux
