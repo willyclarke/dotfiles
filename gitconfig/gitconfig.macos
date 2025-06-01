@@ -1,2 +1,11 @@
+[commit]
+    gpgSign = true
+
 [gpg]
     program = /opt/homebrew/bin/gpg
+
+[user]
+    name = Willy Clarke
+    email = willy@clarke.no
+    signingkey = 703EB22BADA31450663FF1ED18AA5F44B51B0ACB
+
