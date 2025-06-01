@@ -1,0 +1,90 @@
+[advice]
+    addEmptyPathSpec = true
+    pushNonFastForwards = true
+    statusHints = true
+
+[alias]
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[branch]
+    sort = -committerDate
+
+[color "branch"]
+    current = magenta
+    local = default
+    remote = yellow
+    upstream = green
+    plain = blue
+
+[color "decorate"]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta
+
+[color "diff"]
+    meta = black bold
+    frag = magenta
+    context = white
+    whitespace = yellow reverse
+    old = red
+
+[commit]
+    gpgSign = true
+
+[core]
+    compression = 9
+    whitespace = error
+    preloadindex = true
+
+[diff]
+    context = 3
+    renames = copies
+    interHunkContext = 10
+
+[diff-so-fancy]
+    markEmptyLines = false
+
+[log]
+    abbrevCommit = true
+    graphColors = blue,yellow,cyan,magenta,green,red
+
+[init]
+    defaultBranch = main
+
+[interactive]
+    diffFilter = diff-so-fancy --patch
+    singleKey = true
+
+[pager]
+    diff = diff-so-fancy
+    branch = false
+    tag = false
+
+[pull]
+    default = current
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+
+[rebase]
+    autoStash = true
+    missingCommitsCheck = warn
+
+[status]
+    branch = true
+    showStash = true
+    showUntrackedFiles = all
+
+[tag]
+    sort = -taggerDate
+
+[user]
+    name = Willy Clarke
+    email = willy@clarke.no
+    signingkey = 703EB22BADA31450663FF1ED18AA5F44B51B0ACB
+
