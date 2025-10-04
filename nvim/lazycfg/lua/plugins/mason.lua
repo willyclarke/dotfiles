@@ -6,7 +6,7 @@ local M = {
             -- Automatically install LSPs to stdpath for neovim
             { "williamboman/mason.nvim", opts = {} },
             { "williamboman/mason-lspconfig.nvim", opts = {
-                ensure_installed = { "lua_ls", "pyright" },
+                ensure_installed = {},
                 automatic_installation = true,
             }},
 
@@ -20,26 +20,39 @@ local M = {
             -- LSP and Mason setup
             require("mason").setup()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "pyright", },
+                ensure_installed = {},
             })
 
             -- Configure individual language servers
-            local lspconfig = require("lspconfig")
+            -- local lspconfig = require("lspconfig")
+
+	    local lspconfig = vim.lsp.config('*', {
+		    capabilities = {
+			    textDocument = {
+				    semanticTokens = {
+					    multilineTokenSupport = true,
+				    }
+			    }
+		    },
+		    root_markers = { '.git' },
+	    })
+
             -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 
             -- Lua
-            lspconfig.lua_ls.setup({
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                    },
-                },
-            })
+	    vim.lsp.config('lua_ls', {
+		    filetypes = { 'lua' },
+		    settings = { 
+			    Lua = {
+				    diagnostics = {
+					    globals = { "vim" },
+				    },
+			    },
+		    },
+	    })
 
             -- Python
-            lspconfig.pyright.setup({})
+            -- lspconfig.pyright.setup({})
 
         end,
     },

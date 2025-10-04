@@ -44,12 +44,15 @@ local M = {
 
             -- Use nvim-cmp with LSP
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            require("lspconfig")["clangd"].setup({
-                capabilities = capabilities,
-            })
-            require("lspconfig")["zls"].setup({
-                capabilities = capabilities,
-            })
+            -- require("lspconfig")["clangd"].setup({
+            --     capabilities = capabilities,
+            -- })
+            -- require("lspconfig")["zls"].setup({
+            -- 	 capabilities = capabilities,
+            -- })
+            -- require("lspconfig")["pylsp"].setup({
+            --    capabilities = capabilities,
+            -- })
 
             -- Set up more keymappings
         end,

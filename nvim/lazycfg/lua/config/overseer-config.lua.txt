@@ -1,0 +1,12 @@
+local overseer = require("overseer")
+
+overseer.setup({
+  strategy = "toggleterm",
+  task_list = {
+    direction = "right",
+    min_width = 40,
+    max_width = 100,
+    default_detail = 1,
+  },
+  templates = { "builtin", "user.cpp_build" },
+})

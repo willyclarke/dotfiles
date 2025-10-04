@@ -1,0 +1,9 @@
+return {
+  "stevearc/overseer.nvim",
+  config = function()
+    require("config.overseer-config") -- Load external config
+  end,
+  cmd = { "OverseerRun", "OverseerToggle", "OverseerTaskAction" },
+  event = "VeryLazy",
+}
+
