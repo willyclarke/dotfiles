@@ -63,7 +63,11 @@ nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
 -- Yank file of which filename was already copied into register.
 nnoremap('<leader>yf', ':%y+<cr>')
 
-nnoremap("<leader>mm", [[<cmd>YabsTask build<CR>]])
+nnoremap("<leader>mm", [[<cmd>make<CR>]])
+
+-- Language server protocol settings
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>qn", vim.diagnostic.setqflist)
 
 --
 -- INSERT MODE REMAPPINGS --

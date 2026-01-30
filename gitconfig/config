@@ -78,4 +78,4 @@
     showUntrackedFiles = all
 
 [tag]
-    sort = -taggerDate
+    sort = taggerdate
