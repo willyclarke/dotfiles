@@ -9,12 +9,24 @@ vim.lsp.config['lua_ls'] = {
   root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
   -- Specific settings to send to the server. The schema is server-defined.
   -- Example: https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
-  settings = {
+   settings = {
     Lua = {
       runtime = {
-        version = 'LuaJIT',
-      }
-    }
-  }
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          vim.env.VIMRUNTIME,
+        },
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 }
 vim.lsp.enable('lua_ls')
