@@ -1,4 +1,10 @@
+-- allow project-local config
+vim.opt.exrc = true
+-- restrict dangerous commands (no :!, no shell escapes)
+vim.opt.secure = true
+
 -- Old style config and keymaps to my liking
+require("config.makeasync")
 require("config.utils")
 require("config.keymaps")
 require("config.colorscheme")
@@ -23,7 +29,9 @@ require("config.lazy")
 -- 
 require("config.options")
 
+---
 -- Language server config
+---
 require("config.lsp")
 
 -- 

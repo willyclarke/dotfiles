@@ -63,7 +63,7 @@ nnoremap('<leader>fn', ':let @*=expand(\'%:p\')<CR>')
 -- Yank file of which filename was already copied into register.
 nnoremap('<leader>yf', ':%y+<cr>')
 
-nnoremap("<leader>mm", [[<cmd>make<CR>]])
+nnoremap("<leader>mm", [[<cmd>MakeAsync<CR>]])
 
 -- Language server protocol settings
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)

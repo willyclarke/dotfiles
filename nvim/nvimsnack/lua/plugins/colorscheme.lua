@@ -5,11 +5,15 @@ return {
     require("catppuccin").setup({
       flavour = "mocha",
       integrations = {
-        treesitter = true,
+        treesitter = false,
         gitsigns = true,
         lsp_trouble = true,
-        telescope = true,
+        telescope = false,
         notify = true,
+        snacks = {
+            enabled = true,
+            indent_scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+        },
       },
     })
     vim.cmd.colorscheme("catppuccin")
