@@ -31,7 +31,7 @@ require("lazy").setup({
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
-    styles = { 
+    styles = {
 	    notification = {
 		    wo = { wrap = true } -- Wrap notifications
 	    }

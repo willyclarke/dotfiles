@@ -1,5 +1,6 @@
 -- stylua: ignore start
 -- Visual
+vim.o.winborder       = "double"
 vim.o.conceallevel    = 0 	    -- Make `` Visible in Markdown
 vim.o.cmdheight       = 1	      -- Better Error Messages
 vim.o.showtabline     = 2 	    -- Always Show Tabline
