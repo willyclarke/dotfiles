@@ -37,6 +37,8 @@ require("config.lspzls")
 require("config.lsplua")
 -- clangd language server
 require("config.lspclangd")
+-- typst language server
+require("config.lsptypst")
 
 vim.diagnostic.config({
   virtual_text = true,
