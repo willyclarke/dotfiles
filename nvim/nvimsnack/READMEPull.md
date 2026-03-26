@@ -10,4 +10,14 @@ Lazy update or Lazy sync on the development machine.
 The commands are:
 
 git pull --rebase
-nvim +"Lazy restore" +qa
+nvim --headless "+Lazy! restore" +qa
+
+# To update the plugin configuration
+
+git pull --rebase
+nvim --headless "+Lazy! sync" +qa
+git add lazy-lock.json
+git commit -m "Update Neovim plugins"
+git push
+
+
