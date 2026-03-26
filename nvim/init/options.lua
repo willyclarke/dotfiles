@@ -94,7 +94,6 @@ vim.o.undofile        = true 	    -- Save undo history
 vim.o.updatetime      = 50	      -- Decrease update time
 vim.o.timeoutlen      = 500	      -- Time for mapped sequence to complete (in ms)
 vim.o.inccommand      = 'nosplit' -- Incremental live completion
-vim.o.fileencoding    = "utf-8"	  -- Set File Encoding
 vim.o.spelllang       = "en"
 vim.o.completeopt     = "menuone,noselect"  -- Autocompletion
 vim.opt.shortmess:append { W = true, a = true }
