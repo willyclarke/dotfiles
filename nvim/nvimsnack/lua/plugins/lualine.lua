@@ -30,6 +30,40 @@ return {
       return highlight.component_format_highlight(self.hl) .. vim.fn.expand("%:p")
     end
 
+    local NavicPath = component:extend()
+
+    function NavicPath:init(options)
+      NavicPath.super.init(self, options)
+
+      local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = "Comment", link = false })
+      local fg = nil
+      if ok and hl and hl.fg then
+        fg = string.format("#%06x", hl.fg)
+      end
+
+      self.hl = highlight.create_component_highlight_group(
+        { fg = fg or "#808080" },
+        "navic_fixed",
+        self.options
+      )
+    end
+
+    function NavicPath:update_status()
+      local navic = require("nvim-navic")
+      local bufnr = vim.api.nvim_get_current_buf()
+
+      if not navic.is_available(bufnr) then
+        return ""
+      end
+
+      local loc = navic.get_location({}, bufnr)
+      if loc == "" then
+        return ""
+      end
+
+      return highlight.component_format_highlight(self.hl) .. loc
+    end
+
     return {
       options = {
         icons_enabled = true,
@@ -86,7 +120,7 @@ return {
         lualine_a = { "buffers" },
         lualine_b = { "branch" },
         lualine_c = { FullPath },
-        lualine_x = {},
+        lualine_x = { NavicPath },
         lualine_y = {},
         lualine_z = { "tabs" },
       },
