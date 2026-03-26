@@ -83,3 +83,14 @@ export LSCOLORS=ExFxBxDxCxegedabagacad  # Custom colors for 'ls' output
 bind '"\C-p": previous-history'
 bind '"\C-n": next-history'
 
+# This will only work on OSX
+ramdisk () {
+  size_mb=$1
+  sectors=$((size_mb * 2048))
+  diskutil erasevolume APFS "RAMDisk" $(hdiutil attach -nomount ram://$sectors)
+}
+
+# This will only work on OSX
+ramdiskeject () {
+  diskutil eject /Volumes/RAMDisk
+}
