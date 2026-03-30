@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.lsp.config['zls'] = {
 	on_attach = on_attach,
   -- Set to 'zls' if `zls` is in your PATH
-  cmd = { '/opt/homebrew/bin/zls' },
+  cmd = { 'zls' },
   filetypes = { 'zig' },
   root_markers = { 'build.zig' },
   -- There are two ways to set config options:
