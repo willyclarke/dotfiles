@@ -3,6 +3,17 @@ vim.opt.exrc = true
 -- restrict dangerous commands (no :!, no shell escapes)
 vim.opt.secure = true
 
+-- Re-source .nvim.lua when changing into a directory that contains one.
+-- Needed when Neovide is launched as an app (CWD starts at ~, not the project).
+vim.api.nvim_create_autocmd("DirChanged", {
+  callback = function()
+    local exrc = vim.fn.findfile(".nvim.lua", vim.fn.getcwd())
+    if exrc ~= "" then
+      vim.cmd("luafile " .. vim.fn.fnamemodify(exrc, ":p"))
+    end
+  end,
+})
+
 -- Old style config and keymaps to my liking
 require("config.makeasync")
 require("config.utils")
