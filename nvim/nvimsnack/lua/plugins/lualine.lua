@@ -99,7 +99,17 @@ return {
       },
 
       sections = {
-        lualine_a = { "mode" },
+        lualine_a = {
+          "mode",
+          -- Show macro recording register prominently next to mode
+          {
+            function()
+              local reg = vim.fn.reg_recording()
+              return reg ~= "" and ("  @" .. reg) or ""
+            end,
+            color = { fg = "#f38ba8", bg = "#313244", gui = "bold" },
+          },
+        },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = { "filename" },
         lualine_x = { "encoding", "fileformat", "filetype" },

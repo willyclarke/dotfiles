@@ -46,6 +46,12 @@ return {
         },
         view = "mini",
       },
+      -- Route macro recording status to the mini (corner) view so it's always visible.
+      -- Without this noice can swallow it, making it appear that recording is broken.
+      {
+        filter = { event = "msg_showmode", find = "recording" },
+        view = "mini",
+      },
     },
     -- you can enable a preset for easier configuration
     presets = {
