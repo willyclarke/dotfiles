@@ -50,3 +50,4 @@ require("config.lsp")
 -- 
 vim.cmd("source " .. vim.fn.stdpath("config") .. "/vim/ww-word-highlight.vim")
 vim.cmd("source " .. vim.fn.stdpath("config") .. "/vim/abbreviations.vim")
+vim.cmd("source " .. vim.fn.stdpath("config") .. "/luacommon/ww-ripgrep.lua")
